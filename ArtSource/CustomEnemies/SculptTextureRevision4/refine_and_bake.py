@@ -16,7 +16,9 @@ from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parent
 PREV = ROOT.parent / "ReferenceRevision3"
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(PREV))
+from pbr_bake import MAPS, add_active_target, configure_cycles, create_image, save_and_pack
 from revise_models import clear_pose, a_pose, set_camera, make_material
 
 for folder in ("Blender", "Textures", "Sources", "Previews", "Evidence"):
@@ -448,31 +450,24 @@ def bake_atlas(mesh, kind):
     bpy.ops.uv.smart_project(angle_limit=math.radians(66),island_margin=.004,
                              area_weight=.6,correct_aspect=True,scale_to_bounds=True)
     bpy.ops.object.mode_set(mode="OBJECT")
-    scene=bpy.context.scene;scene.render.engine="CYCLES";scene.cycles.samples=8
-    scene.render.bake.use_selected_to_active=False;scene.render.bake.margin=8
-    scene.render.bake.use_clear=True
+    scene=bpy.context.scene
+    configure_cycles(scene)
     mats=list(set(m for m in mesh.data.materials if m))
     images={}
-    for name in ("BaseColor","Roughness","Metallic","Normal"):
-        size=4096 if name=="BaseColor" else 2048
-        suffix="4K" if name=="BaseColor" else "2K"
-        image=bpy.data.images.new(kind+"_"+name+"_"+suffix,size,size,alpha=False)
-        image.colorspace_settings.name="sRGB" if name=="BaseColor" else "Non-Color"
+    for bake_map in MAPS:
+        name=bake_map.name
+        image=create_image(kind,bake_map)
         restores=[]
         for mat in mats:
             nodes,links=mat.node_tree.nodes,mat.node_tree.links
             bs=nodes.get("Principled BSDF")
             out=next(n for n in nodes if n.type=="OUTPUT_MATERIAL" and n.is_active_output)
-            target=nodes.new("ShaderNodeTexImage");target.image=image
-            for n in nodes:n.select=False
-            target.select=True;nodes.active=target
-            uvnode=nodes.new("ShaderNodeUVMap");uvnode.uv_map="AtlasUV"
-            links.new(uvnode.outputs[0],target.inputs[0])
+            target,uvnode=add_active_target(mat,image,"AtlasUV")
             original=out.inputs["Surface"].links[0].from_socket
             emission=None
             if name!="Normal":
                 emission=nodes.new("ShaderNodeEmission")
-                inp=bs.inputs[{"BaseColor":"Base Color","Roughness":"Roughness","Metallic":"Metallic"}[name]]
+                inp=bs.inputs[bake_map.principled_socket]
                 if inp.is_linked:links.new(inp.links[0].from_socket,emission.inputs[0])
                 else:
                     val=inp.default_value
@@ -480,9 +475,9 @@ def bake_atlas(mesh, kind):
                 links.new(emission.outputs[0],out.inputs["Surface"])
             restores.append((mat,out,original,target,uvnode,emission))
         print("BAKE",kind,name,flush=True)
-        bpy.ops.object.bake(type="NORMAL" if name=="Normal" else "EMIT")
-        image.filepath_raw=str(ROOT/"Textures"/(kind+"_"+name+"_"+suffix+".png"))
-        image.file_format="PNG";image.save();image.pack();images[name]=image
+        bpy.ops.object.bake(type=bake_map.bake_type)
+        output=ROOT/"Textures"/(kind+"_"+name+"_"+bake_map.resolution_suffix+".png")
+        save_and_pack(image,output);images[name]=image
         for mat,out,original,target,uvnode,emission in restores:
             nodes,links=mat.node_tree.nodes,mat.node_tree.links
             links.new(original,out.inputs["Surface"])
