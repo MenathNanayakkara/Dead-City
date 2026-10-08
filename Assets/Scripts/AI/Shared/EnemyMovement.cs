@@ -44,7 +44,12 @@ public sealed class EnemyMovement : MonoBehaviour
 
     public bool MoveTo(Vector3 destination, float speed, float stoppingDistance = 1.2f)
     {
-        if (!Ready) { Status = "Off navigation mesh"; failed = true; return false; }
+        if (!Ready)
+        {
+            requested = destination;
+            Fail("Off navigation mesh");
+            return false;
+        }
         if (Time.time < blockedUntil && (destination - blockedGoal).sqrMagnitude < 4) return false;
         if (moving && Time.time < retryUntil) return true;
         bool newJourney = !moving || (requested - destination).sqrMagnitude > 4;
