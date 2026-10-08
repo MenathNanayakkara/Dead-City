@@ -28,6 +28,8 @@ public sealed class EnemyMovement : MonoBehaviour
         probe = new NavMeshPath();
     }
 
+    private void OnDisable() => Stop();
+
     public bool TryPathLength(Vector3 point, out float length)
     {
         length = 0;
@@ -107,6 +109,10 @@ public sealed class EnemyMovement : MonoBehaviour
         if (Ready) { agent.isStopped = true; agent.ResetPath(); }
         moving = false;
         retryUntil = 0;
+        nextDestination = 0;
+        progressAt = Time.time;
+        progressPosition = transform.position;
+        // Preserve failed-goal cooldown and retry diagnostics for the brain.
         Status = "Stopped";
     }
 
