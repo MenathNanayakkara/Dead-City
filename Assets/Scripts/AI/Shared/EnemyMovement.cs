@@ -33,7 +33,7 @@ public sealed class EnemyMovement : MonoBehaviour
     public bool TryPathLength(Vector3 point, out float length)
     {
         length = 0;
-        if (!Ready || !NavMesh.SamplePosition(point, out var hit, 2, agent.areaMask) ||
+        if (!IsFinite(point) || !Ready || !NavMesh.SamplePosition(point, out var hit, 2, agent.areaMask) ||
             !agent.CalculatePath(hit.position, probe) || probe.status != NavMeshPathStatus.PathComplete) return false;
         var corners = probe.corners;
         for (int i = 1; i < corners.Length; i++) length += Vector3.Distance(corners[i - 1], corners[i]);
@@ -44,6 +44,7 @@ public sealed class EnemyMovement : MonoBehaviour
 
     public bool MoveTo(Vector3 destination, float speed, float stoppingDistance = 1.2f)
     {
+        if (!IsFinite(destination)) return RejectInvalidInput("Invalid destination");
         if (!Ready)
         {
             requested = destination;
@@ -98,6 +99,19 @@ public sealed class EnemyMovement : MonoBehaviour
         else agent.SetDestination(requested);
         progressAt = Time.time;
         Status = "Retrying blocked route";
+    }
+
+    private static bool IsFinite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+
+    private static bool IsFinite(Vector3 value) => IsFinite(value.x) && IsFinite(value.y) && IsFinite(value.z);
+
+    private bool RejectInvalidInput(string reason)
+    {
+        Stop();
+        failed = true;
+        Status = reason;
+        // Invalid caller input must not be cached as an unreachable world position.
+        return false;
     }
 
     private void Fail(string reason)
