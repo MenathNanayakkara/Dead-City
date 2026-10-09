@@ -45,6 +45,8 @@ public sealed class EnemyMovement : MonoBehaviour
     public bool MoveTo(Vector3 destination, float speed, float stoppingDistance = 1.2f)
     {
         if (!IsFinite(destination)) return RejectInvalidInput("Invalid destination");
+        if (!IsFinite(speed) || speed < 0) return RejectInvalidInput("Invalid movement speed");
+        if (!IsFinite(stoppingDistance) || stoppingDistance < 0) return RejectInvalidInput("Invalid stopping distance");
         if (!Ready)
         {
             requested = destination;
