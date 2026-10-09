@@ -27,3 +27,24 @@ class Vec2:
 
     def __mul__(self, value: float) -> "Vec2":
         return Vec2(self.x * value, self.y * value)
+
+@dataclass(frozen=True)
+class Observation:
+    now: float
+    agent_position: Vec2
+    player_position: Vec2 | None = None
+    player_forward: Vec2 = Vec2(0.0, 1.0)
+    player_velocity: Vec2 = Vec2(0.0, 0.0)
+    player_visible: bool = False
+    player_reloading: bool = False
+    sound_position: Vec2 | None = None
+    route_failed: bool = False
+    attack_ready: bool = True
+
+
+@dataclass(frozen=True)
+class TacticalPoint:
+    point_id: str
+    position: Vec2
+    concealed: bool
+    kind: str = "ambush"
