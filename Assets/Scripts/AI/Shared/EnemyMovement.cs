@@ -98,7 +98,11 @@ public sealed class EnemyMovement : MonoBehaviour
             agent.SetDestination(hit.position);
             retryUntil = Time.time + 1;
         }
-        else agent.SetDestination(requested);
+        else
+        {
+            if (!Reachable(requested)) { Fail("Recovery route unavailable"); return; }
+            agent.SetDestination(requested);
+        }
         progressAt = Time.time;
         Status = "Retrying blocked route";
     }
