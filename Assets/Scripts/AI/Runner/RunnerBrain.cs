@@ -14,7 +14,6 @@ public sealed class RunnerBrain : MonoBehaviour
     [SerializeField, Min(.2f)] private float commitmentSeconds = .8f;
     [SerializeField, Min(.5f)] private float rushSeconds = 2.4f;
     [SerializeField, Min(.3f)] private float recoverySeconds = 1.2f;
-    private EnemyActor actor;
     private float nextThink, changedAt, actionUntil, recoverUntil, nextRetreat, rushUntil;
     private Vector3 tacticalGoal;
     private bool hasTacticalGoal;
@@ -22,14 +21,30 @@ public sealed class RunnerBrain : MonoBehaviour
     public float[] Scores { get; } = new float[5];
     public bool PathAvailable { get; private set; }
     public float ShotgunThreat { get; private set; }
+    
+private EnemyActor actor;
+private EnemyCombat combat;
 
-    private void Awake()
-    {
-        actor = GetComponent<EnemyActor>();
-        nextThink = Random.value * .3f;
-    }
-    private void OnEnable() => GetComponent<EnemyCombat>().AttackStarted += OnAttack;
-    private void OnDisable() => GetComponent<EnemyCombat>().AttackStarted -= OnAttack;
+private void Awake()
+{
+    actor = GetComponent<EnemyActor>();
+    combat = GetComponent<EnemyCombat>();
+    nextThink = Random.value * .3f;
+}
+
+private void OnEnable()
+{
+    if (combat == null)
+        combat = GetComponent<EnemyCombat>();
+
+    combat.AttackStarted += OnAttack;
+}
+
+private void OnDisable()
+{
+    if (combat != null)
+        combat.AttackStarted -= OnAttack;
+}
     private void OnAttack(bool heavy, float duration)
     {
         recoverUntil = Time.time + duration + recoverySeconds;
