@@ -95,13 +95,13 @@ public sealed class EnemyMovement : MonoBehaviour
         Vector3 side = transform.right * (retries % 2 == 0 ? -1 : 1) * 1.5f;
         if (NavMesh.SamplePosition(transform.position + side, out var hit, 1, agent.areaMask) && Reachable(hit.position))
         {
-            agent.SetDestination(hit.position);
+            if (!agent.SetDestination(hit.position)) { Fail("Recovery path rejected"); return; }
             retryUntil = Time.time + 1;
         }
         else
         {
             if (!Reachable(requested)) { Fail("Recovery route unavailable"); return; }
-            agent.SetDestination(requested);
+            if (!agent.SetDestination(requested)) { Fail("Recovery path rejected"); return; }
         }
         progressAt = Time.time;
         Status = "Retrying blocked route";
