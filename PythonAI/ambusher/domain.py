@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import Enum
 from math import hypot
 
 
@@ -28,6 +29,26 @@ class Vec2:
     def __mul__(self, value: float) -> "Vec2":
         return Vec2(self.x * value, self.y * value)
 
+
+class AmbusherState(str, Enum):
+    OBSERVE = "observe"
+    EVALUATE = "evaluate"
+    MOVE = "move"
+    WAIT = "wait"
+    WARN = "warn"
+    STRIKE = "strike"
+    REPOSITION = "reposition"
+
+
+class CommandKind(str, Enum):
+    HOLD = "hold"
+    MOVE = "move"
+    FACE = "face"
+    WARN = "warn"
+    ATTACK = "attack"
+    INVESTIGATE = "investigate"
+
+
 @dataclass(frozen=True)
 class Observation:
     now: float
@@ -48,3 +69,13 @@ class TacticalPoint:
     position: Vec2
     concealed: bool
     kind: str = "ambush"
+
+
+@dataclass(frozen=True)
+class DecisionCommand:
+    kind: CommandKind
+    state: AmbusherState
+    target: Vec2 | None = None
+    reason: str = ""
+    score: float | None = None
+    path: tuple[Vec2, ...] = ()
