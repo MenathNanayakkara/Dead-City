@@ -3,8 +3,16 @@ using UnityEngine;
 public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
 
 /// <summary>Member 2: utility scores plus bounded action commitments and rush recovery.</summary>
-public sealed class RunnerBrain : MonoBehaviour
-{
+    [RequireComponent(typeof(EnemyActor))]
+    [RequireComponent(typeof(EnemyCombat))]
+    public sealed class RunnerBrain : MonoBehaviour {
+
+    private const float ShotgunThreatRange = 12f;
+    private const float RushTriggerRange = 12f;
+    private const float ReloadOpportunityBonus = 0.65f;
+    private const float AllyEncouragementBonus = 0.25f;
+    private const float TacticalActionDuration = 2.5f;
+    private const float RetreatCooldownDuration = 5f;
     [SerializeField] private float chaseSpeed = 4.8f;
     [SerializeField] private float cautionSpeed = 2.5f;
     [SerializeField] private float aggressionWeight = 1;
@@ -22,11 +30,6 @@ public sealed class RunnerBrain : MonoBehaviour
     public bool PathAvailable { get; private set; }
     public float ShotgunThreat { get; private set; }
     
-    [RequireComponent(typeof(EnemyActor))]
-    [RequireComponent(typeof(EnemyCombat))]
-    public sealed class RunnerBrain : MonoBehaviour;
-
-
     private EnemyActor actor;
     private EnemyCombat combat;
 
@@ -58,7 +61,9 @@ public sealed class RunnerBrain : MonoBehaviour
     public static void Score(float distance, float ownHealth, float weakness, bool shotgun, bool firing,
         bool visible, bool reachable, float[] scores, float attackRange = 1.8f, bool attackReady = true)
     {
-        float threat = shotgun ? Mathf.Clamp01(1 - distance / 12) : 0;
+        float threat = shotgun
+         ? Mathf.Clamp01(1 - distance / ShotgunThreatRange)
+         : 0;
         scores[0] = Mathf.Clamp01((.38f + .48f * weakness + .2f * Mathf.Clamp01(distance / 20)) * (reachable ? 1 : 0) - .3f * threat);
         scores[1] = visible && attackReady && distance <= attackRange ? 1.5f : 0;
         scores[2] = Mathf.Clamp01(.9f * threat * (1 - .7f * weakness));
@@ -92,10 +97,16 @@ public sealed class RunnerBrain : MonoBehaviour
             return;
         }
         PathAvailable = actor.Movement.Reachable(s.TargetPosition);
-        ShotgunThreat = s.Weapon == WeaponCategory.Shotgun ? Mathf.Clamp01(1 - s.Distance / 12) : 0;
+        ShotgunThreat = s.Weapon == WeaponCategory.Shotgun
+        ? Mathf.Clamp01(1 - s.Distance / ShotgunThreatRange)
+        : 0;
         Score(s.Distance, actor.Health.Fraction, s.PlayerWeakness, s.Weapon == WeaponCategory.Shotgun,
             s.PlayerFiring, s.Visible, PathAvailable, Scores, actor.Combat.Range, actor.Combat.CanStartAttack);
-        Scores[0] = (Scores[0] + (s.PlayerReloading ? .65f : 0) + (actor.IsEncouraged ? .25f : 0)) * aggressionWeight;
+        Scores[0] =
+        (Scores[0]
+        + (s.PlayerReloading ? ReloadOpportunityBonus : 0)
+        + (actor.IsEncouraged ? AllyEncouragementBonus : 0))
+        * aggressionWeight;
         Scores[2] *= survivalWeight;
         Scores[3] *= tacticalWeight;
         Scores[4] = Time.time >= nextRetreat ? Scores[4] * survivalWeight : 0;
@@ -120,7 +131,7 @@ public sealed class RunnerBrain : MonoBehaviour
         }
         if (Action == RunnerAction.Chase)
         {
-            if (s.Distance < 12 && rushUntil <= 0) rushUntil = Time.time + rushSeconds;
+        if (s.Distance < RushTriggerRange && rushUntil <= 0) rushUntil = Time.time + rushSeconds;
             actor.Approach(chaseSpeed);
             return;
         }
@@ -137,10 +148,14 @@ public sealed class RunnerBrain : MonoBehaviour
         bool changed = Action != next;
         Action = next;
         changedAt = Time.time;
-        actionUntil = Time.time + (next == RunnerAction.Chase ? rushSeconds : 2.5f);
+        actionUntil = Time.time
+        + (next == RunnerAction.Chase
+        ? rushSeconds
+        : TacticalActionDuration);
         if (next != RunnerAction.Chase) rushUntil = 0;
         hasTacticalGoal = false;
-        if (next == RunnerAction.Disengage) nextRetreat = actionUntil + 5;
+        if (next == RunnerAction.Disengage) 
+        nextRetreat = actionUntil + RetreatCooldownDuration;
         if (next == RunnerAction.Flank || next == RunnerAction.Caution || next == RunnerAction.Disengage)
             hasTacticalGoal = ChooseRoute(next, out tacticalGoal);
         if (changed && next == RunnerAction.Chase) rushUntil = 0;
