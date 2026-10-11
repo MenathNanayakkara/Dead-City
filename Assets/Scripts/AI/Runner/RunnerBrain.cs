@@ -22,29 +22,33 @@ public sealed class RunnerBrain : MonoBehaviour
     public bool PathAvailable { get; private set; }
     public float ShotgunThreat { get; private set; }
     
-private EnemyActor actor;
-private EnemyCombat combat;
+    [RequireComponent(typeof(EnemyActor))]
+    [RequireComponent(typeof(EnemyCombat))]
+    public sealed class RunnerBrain : MonoBehaviour;
 
-private void Awake()
-{
+
+    private EnemyActor actor;
+    private EnemyCombat combat;
+
+    private void Awake()
+    {
     actor = GetComponent<EnemyActor>();
     combat = GetComponent<EnemyCombat>();
     nextThink = Random.value * .3f;
-}
+    }
 
-private void OnEnable()
-{
+    private void OnEnable()
+    {
     if (combat == null)
         combat = GetComponent<EnemyCombat>();
 
     combat.AttackStarted += OnAttack;
-}
+    }
 
-private void OnDisable()
-{
+    private void OnDisable(){
     if (combat != null)
         combat.AttackStarted -= OnAttack;
-}
+        }
     private void OnAttack(bool heavy, float duration)
     {
         recoverUntil = Time.time + duration + recoverySeconds;
