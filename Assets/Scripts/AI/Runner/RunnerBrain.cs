@@ -73,6 +73,7 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
 
     private void Update()
     {
+        int best = FindBestAction();
         if (!actor.TickDue(ref nextThink, .25f) || actor.Combat.IsAttacking) return;
         var s = actor.Perception;
         if (Time.time < recoverUntil)
@@ -143,6 +144,18 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
         }
     }
 
+    private int FindBestAction()
+{
+    int best = 0;
+
+    for (int i = 1; i < Scores.Length; i++)
+    {
+        if (Scores[i] > Scores[best])
+            best = i;
+    }
+
+    return best;
+}
     private void Select(RunnerAction next)
     {
         bool changed = Action != next;
