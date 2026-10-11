@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from math import hypot
 
@@ -79,3 +79,13 @@ class DecisionCommand:
     reason: str = ""
     score: float | None = None
     path: tuple[Vec2, ...] = ()
+
+@dataclass
+class Diagnostics:
+    events: list[str] = field(default_factory=list)
+    nodes_expanded: int = 0
+    replans: int = 0
+    state_transitions: int = 0
+
+    def record(self, message: str) -> None:
+        self.events.append(message)
