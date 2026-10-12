@@ -29,6 +29,15 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
     public float[] Scores { get; } = new float[5];
     public bool PathAvailable { get; private set; }
     public float ShotgunThreat { get; private set; }
+
+    public float CommitmentRemaining =>
+    Mathf.Max(0f, actionUntil - Time.time);
+
+    public float RushRemaining =>
+    Mathf.Max(0f, rushUntil - Time.time);
+
+    public float RecoveryRemaining =>
+    Mathf.Max(0f, recoverUntil - Time.time);
     
     private EnemyActor actor;
     private EnemyCombat combat;
@@ -145,7 +154,7 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
     }
 
     private int FindBestAction()
-{
+    {
     int best = 0;
 
     for (int i = 1; i < Scores.Length; i++)
