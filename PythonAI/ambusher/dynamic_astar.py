@@ -17,6 +17,14 @@ class DynamicGraph:
 
 
 @dataclass(frozen=True)
+class SearchResult:
+    nodes: tuple[str, ...]
+    positions: tuple[Vec2, ...]
+    cost: float
+    expanded: int
+
+
+@dataclass(frozen=True)
 class _SearchState:
     came_from: dict[str, str]
     g_score: dict[str, float]
@@ -49,3 +57,37 @@ class DynamicAStar:
                 heuristic = self.graph.positions[neighbor].distance_to(self.graph.positions[goal])
                 heappush(frontier, (tentative + heuristic, neighbor))
         return _SearchState(came_from, g_score, False, expanded)
+
+    def search(self, start: str, goal: str) -> SearchResult | None:
+        state = self._explore(start, goal)
+        if not state.reached:
+            return None
+        nodes = [goal]
+        current = goal
+        while current in state.came_from:
+            current = state.came_from[current]
+            nodes.append(current)
+        nodes.reverse()
+        return SearchResult(tuple(nodes), tuple(self.graph.positions[node] for node in nodes),
+                            state.g_score[goal], state.expanded)
+
+
+class GraphNavigator:
+    def __init__(self, graph: DynamicGraph):
+        self.graph = graph
+        self.searcher = DynamicAStar(graph)
+
+    def _nearest(self, position: Vec2) -> str:
+        return min(self.graph.positions,
+                   key=lambda node: (position.distance_to(self.graph.positions[node]), node))
+
+    def route_result(self, start: Vec2, goal: Vec2) -> SearchResult | None:
+        return self.searcher.search(self._nearest(start), self._nearest(goal))
+
+    def route(self, start: Vec2, goal: Vec2) -> tuple[Vec2, ...] | None:
+        result = self.route_result(start, goal)
+        return None if result is None else result.positions
+
+    def route_cost(self, start: Vec2, goal: Vec2) -> float | None:
+        result = self.route_result(start, goal)
+        return None if result is None else result.cost
