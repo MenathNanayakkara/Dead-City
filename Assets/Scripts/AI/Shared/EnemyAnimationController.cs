@@ -18,6 +18,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
     private EnemyHealth health;
     private EnemyMovement movement;
     private EnemyCombat combat;
+    private bool eventsSubscribed;
     private static readonly int Speed = Animator.StringToHash("Speed"), Attack = Animator.StringToHash("Attack"), Heavy = Animator.StringToHash("Heavy"), Hit = Animator.StringToHash("Hit"), Dead = Animator.StringToHash("Dead"), AttackSpeed = Animator.StringToHash("AttackSpeed");
     private static readonly int Locomotion = Animator.StringToHash("Base Layer.Locomotion");
     private void Awake()
@@ -46,20 +47,23 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!enabled || health == null || combat == null) return;
+        if (eventsSubscribed || !enabled || health == null || combat == null) return;
         health.Hit += OnHit;
         health.Died += OnDeath;
         combat.AttackStarted += OnAttack;
+        eventsSubscribed = true;
     }
 
     private void OnDisable()
     {
+        if (!eventsSubscribed) return;
         if (health != null)
         {
             health.Hit -= OnHit;
             health.Died -= OnDeath;
         }
         if (combat != null) combat.AttackStarted -= OnAttack;
+        eventsSubscribed = false;
     }
 
     private void Update()
