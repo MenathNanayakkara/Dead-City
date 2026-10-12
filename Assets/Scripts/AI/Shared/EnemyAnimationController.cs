@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [DefaultExecutionOrder(100)]
+[RequireComponent(typeof(EnemyHealth), typeof(EnemyMovement), typeof(EnemyCombat))]
 public sealed class EnemyAnimationController : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +25,12 @@ public sealed class EnemyAnimationController : MonoBehaviour
         health = GetComponent<EnemyHealth>();
         movement = GetComponent<EnemyMovement>();
         combat = GetComponent<EnemyCombat>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (health == null || movement == null || combat == null || animator == null)
+        {
+            Debug.LogError("Enemy animation requires health, movement, combat and an Animator.", this);
+            enabled = false;
+        }
     }
 
     private void Start()
@@ -39,6 +46,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!enabled || health == null || combat == null) return;
         health.Hit += OnHit;
         health.Died += OnDeath;
         combat.AttackStarted += OnAttack;
@@ -46,9 +54,12 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnDisable()
     {
-        health.Hit -= OnHit;
-        health.Died -= OnDeath;
-        combat.AttackStarted -= OnAttack;
+        if (health != null)
+        {
+            health.Hit -= OnHit;
+            health.Died -= OnDeath;
+        }
+        if (combat != null) combat.AttackStarted -= OnAttack;
     }
 
     private void Update()
