@@ -6,6 +6,7 @@ public sealed class EnemyMovement : MonoBehaviour
 {
     [SerializeField, Min(.5f)] private float stuckSeconds = 2;
     [SerializeField, Min(0)] private int localRetryLimit = 2;
+    [SerializeField, Min(0)] private float turnSpeed = 360;
     private NavMeshAgent agent;
     private NavMeshPath probe;
     private float nextDestination, progressAt, retryUntil, blockedUntil;
@@ -146,7 +147,7 @@ public sealed class EnemyMovement : MonoBehaviour
         var d = target - transform.position;
         d.y = 0;
         if (d.sqrMagnitude > .01f)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(d), 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(d), Mathf.Max(0, turnSpeed) * Time.deltaTime);
     }
 
     public void OpenNearbyDoor()
