@@ -43,6 +43,84 @@ public sealed class HunterNavigationGraph : MonoBehaviour
             }
     }
 
+    private bool SearchGrid(Vector3 start, Vector3 goal)
+    {
+        if (nodes == null)
+            Build();
+        int first = Nearest(start), last = Nearest(goal);
+        int expanded = 0;
+        if (first < 0 || last < 0)
+            return false;
+        if (NavMesh.Raycast(start, nodes[first], out _, NavMesh.AllAreas))
+            return false;
+        System.Array.Clear(closed, 0, closed.Length);
+        System.Array.Clear(opened, 0, opened.Length);
+        open.Clear();
+        for (int i = 0; i < g.Length; i++)
+        {
+            g[i] = float.PositiveInfinity;
+            parent[i] = -1;
+        }
+
+        g[first] = 0;
+        open.Add(first);
+        opened[first] = true;
+        while (open.Count > 0 && expanded < expansionBudget)
+        {
+            int best = 0;
+            float score = float.PositiveInfinity;
+            for (int i = 0; i < open.Count; i++)
+            {
+                int id = open[i];
+                float f = g[id] + Vector3.Distance(nodes[id], nodes[last]);
+                if (f < score)
+                {
+                    score = f;
+                    best = i;
+                }
+            }
+
+            int current = open[best];
+            open.RemoveAt(best);
+            opened[current] = false;
+            closed[current] = true;
+            expanded++;
+            if (current == last)
+            {
+                if (NavMesh.Raycast(nodes[last], goal, out _, NavMesh.AllAreas))
+                    return false;
+                return true;
+            }
+
+            int cx = current % columns, cz = current / columns;
+            for (int dz = -1; dz <= 1; dz++)
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    int x = cx + dx, z = cz + dz;
+                    if (dx == 0 && dz == 0 || x < 0 || z < 0 || x >= columns || z >= rows)
+                        continue;
+                    int next = z * columns + x;
+                    if (!walkable[next] || closed[next])
+                        continue;
+                    float candidate = g[current] + Vector3.Distance(nodes[current], nodes[next]);
+                    if (candidate >= g[next])
+                        continue;
+                    // Dynamic carving can invalidate a previously walkable edge; query it at expansion time.
+                    if (NavMesh.Raycast(nodes[current], nodes[next], out _, NavMesh.AllAreas))
+                        continue;
+                    g[next] = candidate;
+                    parent[next] = current;
+                    if (!opened[next])
+                    {
+                        opened[next] = true;
+                        open.Add(next);
+                    }
+                }
+        }
+
+        return false;
+    }
+
     private int Nearest(Vector3 p)
     {
         int best = -1;
