@@ -5,12 +5,12 @@ public enum EliteAction { DirectAttack, HeavyAttack, Push, MaintainDistance, Rep
 /// <summary>Survival and action feasibility above committed utility decisions.</summary>
 public sealed class EliteBrain : MonoBehaviour
 {
-    [SerializeField] private float advanceSpeed = 2.8f;
-    [SerializeField] private float pushSpeed = 4;
-    [SerializeField] private float heavyCooldown = 6;
+    [SerializeField, Min(0)] private float advanceSpeed = 2.8f;
+    [SerializeField, Min(0)] private float pushSpeed = 4;
+    [SerializeField, Min(0)] private float heavyCooldown = 6;
     [SerializeField, Range(0, 1)] private float retreatHealth = .25f;
-    [SerializeField] private float aggressionWeight = 1;
-    [SerializeField] private float tacticalWeight = 1;
+    [SerializeField, Min(0)] private float aggressionWeight = 1;
+    [SerializeField, Min(0)] private float tacticalWeight = 1;
     [SerializeField, Min(.3f)] private float commitmentSeconds = 1.3f;
     private EnemyActor actor;
     private float nextThink, nextHeavy, nextRetreat, retreatUntil, committedUntil, actionUntil, advanceUntil;
@@ -21,7 +21,29 @@ public sealed class EliteBrain : MonoBehaviour
     public int NearbyAllies { get; private set; }
     public MapMarker Cover => cover;
 
-    private void Awake() { actor = GetComponent<EnemyActor>(); nextThink = Random.value * .3f; }
+    private void Awake()
+    {
+        ValidateSettings();
+        actor = GetComponent<EnemyActor>();
+        nextThink = Random.value * .3f;
+    }
+
+    private void OnValidate() => ValidateSettings();
+
+    private void ValidateSettings()
+    {
+        advanceSpeed = ValidSetting(advanceSpeed, 0, 2.8f);
+        pushSpeed = ValidSetting(pushSpeed, 0, 4);
+        heavyCooldown = ValidSetting(heavyCooldown, 0, 6);
+        retreatHealth = Mathf.Clamp01(ValidSetting(retreatHealth, 0, .25f));
+        aggressionWeight = ValidSetting(aggressionWeight, 0, 1);
+        tacticalWeight = ValidSetting(tacticalWeight, 0, 1);
+        commitmentSeconds = ValidSetting(commitmentSeconds, .3f, 1.3f);
+    }
+
+    private static float ValidSetting(float value, float minimum, float fallback) =>
+        float.IsNaN(value) || float.IsInfinity(value) ? fallback : Mathf.Max(minimum, value);
+
     private void OnDisable() => ReleaseCover();
 
     public static void Score(float distance, float weakness, bool shotgun, bool firing, int allies,
