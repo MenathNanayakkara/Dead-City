@@ -144,10 +144,14 @@ public sealed class EnemyMovement : MonoBehaviour
 
     public void Face(Vector3 target)
     {
+        if (!IsFinite(target) || !IsFinite(turnSpeed) || turnSpeed <= 0 ||
+            !IsFinite(Time.deltaTime) || Time.deltaTime <= 0) return;
         var d = target - transform.position;
         d.y = 0;
+        float turnStep = turnSpeed * Time.deltaTime;
+        if (!IsFinite(d) || !IsFinite(d.sqrMagnitude) || !IsFinite(turnStep)) return;
         if (d.sqrMagnitude > .01f)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(d), Mathf.Max(0, turnSpeed) * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(d), turnStep);
     }
 
     public void OpenNearbyDoor()
