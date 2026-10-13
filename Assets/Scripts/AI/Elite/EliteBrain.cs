@@ -51,6 +51,13 @@ public sealed class EliteBrain : MonoBehaviour
     {
         if (scores == null) throw new System.ArgumentNullException(nameof(scores));
         if (scores.Length < 5) throw new System.ArgumentException("Five action score slots are required.", nameof(scores));
+        if (float.IsNaN(distance) || float.IsInfinity(distance) || distance < 0 ||
+            float.IsNaN(range) || float.IsInfinity(range) || range < 0)
+        {
+            System.Array.Clear(scores, 0, 5);
+            return;
+        }
+        weakness = Mathf.Clamp01(ValidSetting(weakness, 0, 0));
         scores[0] = reachable ? Mathf.Clamp01(.45f + .3f * weakness + (distance <= range ? .2f : 0)) : 0;
         scores[1] = heavyReady && distance <= range ? 1.5f : 0;
         scores[2] = reachable ? Mathf.Clamp01(.2f + .35f * Mathf.Clamp01(allies / 4f) + .35f * weakness) : 0;
