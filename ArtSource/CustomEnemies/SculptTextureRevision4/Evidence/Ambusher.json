@@ -1,0 +1,257 @@
+{
+  "character": "Ambusher",
+  "source": "D:\\GV project\\ArtSource\\CustomEnemies\\ReferenceRevision3\\Blender\\Ambusher_ReferenceRevision3.blend",
+  "source_sha256": "d5456095bca3214878bee6d81fdbe0d49acc8dcf781bb0f72ed16bd3afb66017",
+  "source_unchanged": true,
+  "vertices": 30949,
+  "triangles": 61002,
+  "bones": 52,
+  "actions": [
+    "Ambusher_Attack",
+    "Ambusher_Chase",
+    "Ambusher_Death",
+    "Ambusher_Hit",
+    "Ambusher_Idle",
+    "Ambusher_Stagger",
+    "Ambusher_TurnLeft",
+    "Ambusher_TurnRight",
+    "Ambusher_Walk"
+  ],
+  "sculpted_vertices": 20355,
+  "replaced_components": [
+    {
+      "vertices": 610,
+      "bounds": [
+        [
+          0.02855006605386734,
+          -0.21999990940093994,
+          0.021000027656555176
+        ],
+        [
+          0.1625499725341797,
+          0.0699998140335083,
+          0.14900004863739014
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          0.03305000811815262,
+          -0.22200000286102295,
+          0.004999995231628418
+        ],
+        [
+          0.15805000066757202,
+          0.06799999624490738,
+          0.04499995708465576
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          0.06255001574754715,
+          -0.10400000214576721,
+          0.1419999599456787
+        ],
+        [
+          0.1285499930381775,
+          -0.09600000083446503,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          0.06255001574754715,
+          -0.07699999958276749,
+          0.1419999599456787
+        ],
+        [
+          0.1285499930381775,
+          -0.0689999982714653,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          0.06255001574754715,
+          -0.05000000074505806,
+          0.1419999599456787
+        ],
+        [
+          0.1285499930381775,
+          -0.041999999433755875,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          0.06255001574754715,
+          -0.022999998182058334,
+          0.1419999599456787
+        ],
+        [
+          0.1285499930381775,
+          -0.014999999664723873,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 610,
+      "bounds": [
+        [
+          -0.1625499427318573,
+          -0.21999990940093994,
+          0.021000027656555176
+        ],
+        [
+          -0.02855002135038376,
+          0.0699998140335083,
+          0.14900004863739014
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          -0.15805000066757202,
+          -0.22200000286102295,
+          0.004999995231628418
+        ],
+        [
+          -0.03305000066757202,
+          0.06799999624490738,
+          0.04499995708465576
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          -0.1285499930381775,
+          -0.10400000214576721,
+          0.1419999599456787
+        ],
+        [
+          -0.06255000084638596,
+          -0.09600000083446503,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          -0.1285499930381775,
+          -0.07699999958276749,
+          0.1419999599456787
+        ],
+        [
+          -0.06255000084638596,
+          -0.0689999982714653,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          -0.1285499930381775,
+          -0.05000000074505806,
+          0.1419999599456787
+        ],
+        [
+          -0.06255000084638596,
+          -0.041999999433755875,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 56,
+      "bounds": [
+        [
+          -0.1285499930381775,
+          -0.022999998182058334,
+          0.1419999599456787
+        ],
+        [
+          -0.06255000084638596,
+          -0.014999999664723873,
+          0.14800000190734863
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 144,
+      "bounds": [
+        [
+          0.03954999893903732,
+          -0.06199999898672104,
+          0.10000002384185791
+        ],
+        [
+          0.15154999494552612,
+          0.06199999898672104,
+          0.20000004768371582
+        ]
+      ],
+      "type": "footwear"
+    },
+    {
+      "vertices": 144,
+      "bounds": [
+        [
+          -0.15154999494552612,
+          -0.06199999898672104,
+          0.10000002384185791
+        ],
+        [
+          -0.03954999893903732,
+          0.06199999898672104,
+          0.20000004768371582
+        ]
+      ],
+      "type": "footwear"
+    }
+  ],
+  "textures": [
+    "D:\\GV project\\ArtSource\\CustomEnemies\\SculptTextureRevision4\\Textures\\Ambusher_BaseColor_4K.png",
+    "D:\\GV project\\ArtSource\\CustomEnemies\\SculptTextureRevision4\\Textures\\Ambusher_Roughness_2K.png",
+    "D:\\GV project\\ArtSource\\CustomEnemies\\SculptTextureRevision4\\Textures\\Ambusher_Metallic_2K.png",
+    "D:\\GV project\\ArtSource\\CustomEnemies\\SculptTextureRevision4\\Textures\\Ambusher_Normal_2K.png"
+  ],
+  "unweighted_vertices": 0,
+  "weight_sum_errors": 0,
+  "output": "D:\\GV project\\ArtSource\\CustomEnemies\\SculptTextureRevision4\\Blender\\Ambusher_Sculpt4.blend",
+  "output_sha256": "0d069b98c2fda7da0b9d8c11197978083ec6a1febc14a39f54b7e990a23c5f7b"
+}
