@@ -12,6 +12,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
     [SerializeField, Min(.01f)] private float visualStrideScale = 1f;
     [Header("Locomotion variation")]
     [SerializeField] private bool randomizeLocomotionPhase = true;
+    [SerializeField, Min(0)] private float speedDampTime = .04f;
     [Header("Contact-timed action clips")]
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private AnimationClip heavyAttackClip;
@@ -71,7 +72,9 @@ public sealed class EnemyAnimationController : MonoBehaviour
         if (animator != null && !health.IsDead)
         {
             float speed = Vector3.ProjectOnPlane(movement.Velocity, Vector3.up).magnitude;
-            animator.SetFloat(Speed, speed < .05f ? 0f : speed, speed < .05f ? 0f : .04f, Time.deltaTime);
+            float damping = float.IsNaN(speedDampTime) || float.IsInfinity(speedDampTime)
+                ? .04f : Mathf.Max(0, speedDampTime);
+            animator.SetFloat(Speed, speed < .05f ? 0f : speed, speed < .05f ? 0f : damping, Time.deltaTime);
             float reference = animator.GetCurrentAnimatorStateInfo(0).IsName("Chase") ? chaseStrideSpeed : walkStrideSpeed;
             if (animator.IsInTransition(0))
             {
