@@ -20,6 +20,8 @@ public sealed class HunterNavigationGraph : MonoBehaviour
     private int[] parent;
     private int columns, rows;
     private readonly List<int> open = new List<int>(256);
+    public int LastExpanded { get; private set; }
+    public float LastPathCost { get; private set; }
 
     private void Awake() => Build();
     public void Build()
@@ -43,12 +45,14 @@ public sealed class HunterNavigationGraph : MonoBehaviour
             }
     }
 
-    private bool SearchGrid(Vector3 start, Vector3 goal)
+    public bool FindPath(Vector3 start, Vector3 goal, List<Vector3> result)
     {
+        result.Clear();
         if (nodes == null)
             Build();
         int first = Nearest(start), last = Nearest(goal);
-        int expanded = 0;
+        LastExpanded = 0;
+        LastPathCost = 0;
         if (first < 0 || last < 0)
             return false;
         if (NavMesh.Raycast(start, nodes[first], out _, NavMesh.AllAreas))
@@ -65,7 +69,7 @@ public sealed class HunterNavigationGraph : MonoBehaviour
         g[first] = 0;
         open.Add(first);
         opened[first] = true;
-        while (open.Count > 0 && expanded < expansionBudget)
+        while (open.Count > 0 && LastExpanded < expansionBudget)
         {
             int best = 0;
             float score = float.PositiveInfinity;
@@ -84,11 +88,16 @@ public sealed class HunterNavigationGraph : MonoBehaviour
             open.RemoveAt(best);
             opened[current] = false;
             closed[current] = true;
-            expanded++;
+            LastExpanded++;
             if (current == last)
             {
                 if (NavMesh.Raycast(nodes[last], goal, out _, NavMesh.AllAreas))
                     return false;
+                LastPathCost = g[last];
+                for (int at = last; at >= 0; at = parent[at])
+                    result.Add(nodes[at]);
+                result.Reverse();
+                result.Add(goal);
                 return true;
             }
 
