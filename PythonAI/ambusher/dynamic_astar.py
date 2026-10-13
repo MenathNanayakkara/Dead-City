@@ -12,6 +12,7 @@ class DynamicGraph:
     positions: dict[str, Vec2]
     edges: dict[str, dict[str, float]]
     blocked: set[tuple[str, str]] = field(default_factory=set)
+    danger: dict[tuple[str, str], float] = field(default_factory=dict)
     version: int = 0
 
     def set_blocked(self, a: str, b: str, blocked: bool = True) -> None:
@@ -22,10 +23,16 @@ class DynamicGraph:
             self.blocked.discard(edge)
         self.version += 1
 
+    def set_danger(self, a: str, b: str, cost: float) -> None:
+        if cost < 0:
+            raise ValueError("Danger cost cannot be negative")
+        self.danger[tuple(sorted((a, b)))] = cost
+        self.version += 1
     def neighbors(self, node: str):
-        for neighbor, cost in self.edges.get(node, {}).items():
-            if tuple(sorted((node, neighbor))) not in self.blocked:
-                yield neighbor, cost
+        for neighbor, base_cost in self.edges.get(node, {}).items():
+            edge = tuple(sorted((node, neighbor)))
+            if edge not in self.blocked:
+                yield neighbor, base_cost + self.danger.get(edge, 0.0)
 
 
 @dataclass(frozen=True)
