@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from heapq import heappop, heappush
 from math import inf
 
@@ -11,9 +11,21 @@ from .domain import Vec2
 class DynamicGraph:
     positions: dict[str, Vec2]
     edges: dict[str, dict[str, float]]
+    blocked: set[tuple[str, str]] = field(default_factory=set)
+    version: int = 0
+
+    def set_blocked(self, a: str, b: str, blocked: bool = True) -> None:
+        edge = tuple(sorted((a, b)))
+        if blocked:
+            self.blocked.add(edge)
+        else:
+            self.blocked.discard(edge)
+        self.version += 1
 
     def neighbors(self, node: str):
-        yield from self.edges.get(node, {}).items()
+        for neighbor, cost in self.edges.get(node, {}).items():
+            if tuple(sorted((node, neighbor))) not in self.blocked:
+                yield neighbor, cost
 
 
 @dataclass(frozen=True)
@@ -22,6 +34,7 @@ class SearchResult:
     positions: tuple[Vec2, ...]
     cost: float
     expanded: int
+    graph_version: int
 
 
 @dataclass(frozen=True)
@@ -69,7 +82,7 @@ class DynamicAStar:
             nodes.append(current)
         nodes.reverse()
         return SearchResult(tuple(nodes), tuple(self.graph.positions[node] for node in nodes),
-                            state.g_score[goal], state.expanded)
+                            state.g_score[goal], state.expanded, self.graph.version)
 
 
 class GraphNavigator:
