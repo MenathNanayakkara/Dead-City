@@ -69,9 +69,11 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.deltaTime <= 0 || float.IsNaN(Time.deltaTime) || float.IsInfinity(Time.deltaTime)) return;
         if (animator != null && !health.IsDead)
         {
             float speed = Vector3.ProjectOnPlane(movement.Velocity, Vector3.up).magnitude;
+            if (float.IsNaN(speed) || float.IsInfinity(speed)) speed = 0;
             float damping = float.IsNaN(speedDampTime) || float.IsInfinity(speedDampTime)
                 ? .04f : Mathf.Max(0, speedDampTime);
             animator.SetFloat(Speed, speed < .05f ? 0f : speed, speed < .05f ? 0f : damping, Time.deltaTime);
