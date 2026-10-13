@@ -49,6 +49,8 @@ public sealed class EliteBrain : MonoBehaviour
     public static void Score(float distance, float weakness, bool shotgun, bool firing, int allies,
         bool reachable, bool heavyReady, float range, float[] scores)
     {
+        if (scores == null) throw new System.ArgumentNullException(nameof(scores));
+        if (scores.Length < 5) throw new System.ArgumentException("Five action score slots are required.", nameof(scores));
         scores[0] = reachable ? Mathf.Clamp01(.45f + .3f * weakness + (distance <= range ? .2f : 0)) : 0;
         scores[1] = heavyReady && distance <= range ? 1.5f : 0;
         scores[2] = reachable ? Mathf.Clamp01(.2f + .35f * Mathf.Clamp01(allies / 4f) + .35f * weakness) : 0;
