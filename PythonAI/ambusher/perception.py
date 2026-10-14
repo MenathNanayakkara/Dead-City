@@ -27,6 +27,9 @@ class PerceptionMemory:
             self._memory = Memory(observation.player_position, observation.now,
                                   observation.player_forward.normalized(), observation.player_velocity,
                                   observation.player_reloading, True)
+        elif observation.sound_position is not None:
+            self._memory = Memory(observation.sound_position, observation.now,
+                                  Vec2(0.0, 0.0), Vec2(0.0, 0.0), False, False)
         elif self._memory is not None and observation.now - self._memory.observed_at > self.memory_seconds:
             self._memory = None
         elif self._memory is not None:
