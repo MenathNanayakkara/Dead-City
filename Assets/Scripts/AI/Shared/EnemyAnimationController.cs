@@ -132,8 +132,10 @@ public sealed class EnemyAnimationController : MonoBehaviour
     private void OnAttack(bool heavy, float duration)
     {
         if (duration <= 0 || float.IsNaN(duration) || float.IsInfinity(duration)) return;
-        if (animator != null)
+        if (animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null)
         {
+            string state = heavy ? "Base Layer.Heavy" : "Base Layer.Attack";
+            if (!animator.HasState(0, Animator.StringToHash(state))) return;
             var clip = heavy ? heavyAttackClip : attackClip;
             // Clip lengths are not necessarily one second. Match the actual action
             // to the combat clock so the visible strike and damage share a contact time.
@@ -145,7 +147,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
             animator.ResetTrigger(Attack);
             animator.ResetTrigger(Heavy);
             animator.ResetTrigger(Hit);
-            animator.CrossFadeInFixedTime(heavy ? "Base Layer.Heavy" : "Base Layer.Attack", .06f, 0, 0f);
+            animator.CrossFadeInFixedTime(state, .06f, 0, 0f);
         }
     }
 }
