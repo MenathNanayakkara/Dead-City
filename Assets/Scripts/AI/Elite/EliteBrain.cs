@@ -106,14 +106,23 @@ public sealed class EliteBrain : MonoBehaviour
         Scores[3] *= tacticalWeight;
         Scores[4] *= tacticalWeight;
         if (Time.time < advanceUntil) Scores[3] = Scores[4] = 0;
-        int best = 0;
-        for (int i = 1; i < Scores.Length; i++) if (Scores[i] > Scores[best]) best = i;
+        int best = -1;
+        for (int i = 0; i < Scores.Length; i++)
+            if (Scores[i] > 0 && (best < 0 || Scores[i] > Scores[best])) best = i;
+        if (best < 0)
+        {
+            ReleaseCover();
+            actor.Movement.Stop();
+            actor.Decision = "Elite / no feasible action";
+            return;
+        }
         bool expired = Time.time >= actionUntil;
-        bool invalid = Action == EliteAction.HeavyAttack && !canStrike || actor.Movement.Failed;
+        int current = (int)Action;
+        bool invalid = current < 0 || current >= Scores.Length || Scores[current] <= 0 || actor.Movement.Failed;
         if (expired && (Action == EliteAction.Reposition || Action == EliteAction.MaintainDistance))
         {
             advanceUntil = Time.time + 2;
-            best = 0;
+            if (Scores[0] > 0) best = 0;
         }
         if (expired || invalid || best == 1 ||
             (Time.time >= committedUntil && Scores[best] > Scores[(int)Action] + .1f))
