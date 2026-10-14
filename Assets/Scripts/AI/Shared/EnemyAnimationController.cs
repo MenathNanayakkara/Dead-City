@@ -98,9 +98,18 @@ public sealed class EnemyAnimationController : MonoBehaviour
                 reference = Mathf.Lerp(reference, nextReference, Mathf.Clamp01(animator.GetAnimatorTransitionInfo(0).normalizedTime));
             }
             // Only locomotion states consume this parameter; attack/death timing is separate.
-            float cadence = speed < .05f ? 1f : Mathf.Clamp(speed / (reference * visualStrideScale), .08f, 3f);
+            float cadence = CalculateCadence(speed, reference, visualStrideScale);
             animator.SetFloat("GaitScale", cadence);
         }
+    }
+
+    private static float CalculateCadence(float speed, float reference, float scale)
+    {
+        if (speed < .05f || float.IsNaN(reference) || float.IsInfinity(reference) || reference <= 0 ||
+            float.IsNaN(scale) || float.IsInfinity(scale) || scale <= 0) return 1;
+        // Double precision keeps the product of finite calibration values from overflowing.
+        double cadence = speed / ((double)reference * scale);
+        return (float)System.Math.Max(.08f, System.Math.Min(3f, cadence));
     }
 
     private void OnHit(float amount)
