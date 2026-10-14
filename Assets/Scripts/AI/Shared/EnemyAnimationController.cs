@@ -131,13 +131,17 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnAttack(bool heavy, float duration)
     {
+        if (duration <= 0 || float.IsNaN(duration) || float.IsInfinity(duration)) return;
         if (animator != null)
         {
             var clip = heavy ? heavyAttackClip : attackClip;
             // Clip lengths are not necessarily one second. Match the actual action
             // to the combat clock so the visible strike and damage share a contact time.
             float length = clip != null ? clip.length : 1f;
-            animator.SetFloat(AttackSpeed, length / Mathf.Max(.05f, duration));
+            if (length <= 0 || float.IsNaN(length) || float.IsInfinity(length)) length = 1;
+            float playbackSpeed = length / Mathf.Max(.05f, duration);
+            if (float.IsNaN(playbackSpeed) || float.IsInfinity(playbackSpeed) || playbackSpeed <= 0) playbackSpeed = 1;
+            animator.SetFloat(AttackSpeed, playbackSpeed);
             animator.ResetTrigger(Attack);
             animator.ResetTrigger(Heavy);
             animator.ResetTrigger(Hit);
