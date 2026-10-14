@@ -42,12 +42,28 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
     private EnemyActor actor;
     private EnemyCombat combat;
 
+
+private void OnValidate()
+{
+    chaseSpeed = Mathf.Max(0f, chaseSpeed);
+    cautionSpeed = Mathf.Max(0f, cautionSpeed);
+
+    aggressionWeight = Mathf.Max(0f, aggressionWeight);
+    survivalWeight = Mathf.Max(0f, survivalWeight);
+    tacticalWeight = Mathf.Max(0f, tacticalWeight);
+
+    hysteresis = Mathf.Clamp(hysteresis, 0f, 0.3f);
+    commitmentSeconds = Mathf.Max(0.2f, commitmentSeconds);
+    rushSeconds = Mathf.Max(0.5f, rushSeconds);
+    recoverySeconds = Mathf.Max(0.3f, recoverySeconds);
+}
     private void Awake()
     {
     actor = GetComponent<EnemyActor>();
     combat = GetComponent<EnemyCombat>();
     nextThink = Random.value * .3f;
     }
+
 
     private void OnEnable()
     {
