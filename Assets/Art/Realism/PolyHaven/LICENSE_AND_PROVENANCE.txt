@@ -1,0 +1,12 @@
+Poly Haven source asset package
+License: CC0 1.0 Universal (public domain dedication)
+Publisher license: https://polyhaven.com/license
+Legal terms: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Provider permits commercial and noncommercial use, modification, redistribution and sharing.
+Attribution is not required, but authors and original asset URLs are retained in SourceRecords.json.
+These are free third-party assets, not original university student work.
+
+Integrity: Every asset file was matched to the provider's MD5 and byte count, and has a local SHA-256 entry.
+Package SHA256Roster.json covers all payload files, including this notice and SourceRecords.json.
+This is a checked staging package, not a game-dev CLI canonical package or receipt. The game-dev CLI is unavailable.
+No Unity import, GPU rendering, or runtime verification is claimed by this package.

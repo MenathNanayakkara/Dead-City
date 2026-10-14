@@ -1,0 +1,8 @@
+{
+  "destination": "Assets/Art/Realism/PolyHaven",
+  "files": 33,
+  "license": "CC0-1.0",
+  "verification": "Provider MD5 and closed SHA256 roster; native Unity import, shader compilation and still renders completed",
+  "canonicalCli": "Unavailable; existing local importer fallback",
+  "runtime": "No gameplay or target-device performance run for this pass"
+}

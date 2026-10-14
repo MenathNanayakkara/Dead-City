@@ -1,0 +1,342 @@
+[
+  {
+    "id": "covered_car",
+    "title": "Covered Car",
+    "type": "model",
+    "authors": {
+      "MP": "All"
+    },
+    "source": "https://polyhaven.com/a/covered_car",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "inspectedUtc": "2026-10-14T12:48:16.6485641Z",
+    "files": [
+      {
+        "file": "covered_car/covered_car_1k.fbx",
+        "channel": "FBX",
+        "resolution": "1k texture bindings",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/covered_car/covered_car_1k.fbx",
+        "bytes": 422700,
+        "providerMD5": "ce8496f29ab35b1d31aa5a0eda238d1a",
+        "sha256": "765bbe9634d8dede608e9980ee8e8f706aac874f9aecdc739d43f9e0913bd595"
+      },
+      {
+        "file": "covered_car/textures/covered_car_metal_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/covered_car/covered_car_metal_1k.exr",
+        "bytes": 190014,
+        "providerMD5": "0569b585372fbe2d4c29fcdadbb5892f",
+        "sha256": "77e5bf87d307c2ed8896c068b924c8a991c4233d7d00324d3711eae98697749b"
+      },
+      {
+        "file": "covered_car/textures/covered_car_nor_gl_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/covered_car/covered_car_nor_gl_1k.exr",
+        "bytes": 1565470,
+        "providerMD5": "c50faa7cb521883308d30710c506bf3b",
+        "sha256": "18df4570385edb95edba7f53da172ec704f4e4e9a81d9aecae63588288cabbfe"
+      },
+      {
+        "file": "covered_car/textures/covered_car_rough_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/covered_car/covered_car_rough_1k.exr",
+        "bytes": 783683,
+        "providerMD5": "aadd43616b90a3296ef01370cdbff435",
+        "sha256": "e87d218a9ed739d71ca9af8d0b180279d8947a8783f7d581360bc158bec3b677"
+      },
+      {
+        "file": "covered_car/textures/covered_car_diff_1k.jpg",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/covered_car/covered_car_diff_1k.jpg",
+        "bytes": 558004,
+        "providerMD5": "61c107225ca1cbd523d6d6e9c1775f22",
+        "sha256": "c4616a5c7c1327e4bc127b600e59d9dcb2123f8926f1570a1ca4a068d97f4d34"
+      },
+      {
+        "file": "covered_car/textures/covered_car_diff_2k.jpg",
+        "channel": "Diffuse",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/covered_car/covered_car_diff_2k.jpg",
+        "bytes": 2034745,
+        "providerMD5": "8407e04a1ab3a425a6f7369e8b80f340",
+        "sha256": "d482fc7fe8ea8c523e9f29f581a4dd50e14bb060e09779c9633fc55a6473dffb"
+      },
+      {
+        "file": "covered_car/textures/covered_car_ao_1k.jpg",
+        "channel": "AO",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/covered_car/covered_car_ao_1k.jpg",
+        "bytes": 319193,
+        "providerMD5": "2012bc8eb7fbdfba8d959548e86356db",
+        "sha256": "f6b51fdcb98317ec3782c4415a436d59af52a65c78dc242f181558affc4ded5f"
+      },
+      {
+        "file": "covered_car/textures/covered_car_nor_gl_1k.jpg",
+        "channel": "nor_gl",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/covered_car/covered_car_nor_gl_1k.jpg",
+        "bytes": 641340,
+        "providerMD5": "afc43e8dd74213483a454cdb00f0f541",
+        "sha256": "6769694abe28c53e5c35ad1cefdd462b56416e7d89a6bcf5a9d9f6c922b46d05"
+      },
+      {
+        "file": "covered_car/textures/covered_car_rough_1k.jpg",
+        "channel": "Rough",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/covered_car/covered_car_rough_1k.jpg",
+        "bytes": 595384,
+        "providerMD5": "33d1ff90401b132784a60fb68a0ba9a2",
+        "sha256": "c1b1ef3fd4c3aa693289bde114896d68afab056bdf6ec04ea6fd6f58ca584fff"
+      }
+    ]
+  },
+  {
+    "id": "fern_02",
+    "title": "Fern 02",
+    "type": "model",
+    "authors": {
+      "Rob Tuytel": "scanning",
+      "Rico Cilliers": "modeling"
+    },
+    "source": "https://polyhaven.com/a/fern_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "inspectedUtc": "2026-10-14T12:48:16.8185472Z",
+    "files": [
+      {
+        "file": "fern_02/fern_02_1k.fbx",
+        "channel": "FBX",
+        "resolution": "1k texture bindings",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/fern_02/fern_02_1k.fbx",
+        "bytes": 223596,
+        "providerMD5": "65fd395dca9867cfa5e4d91e3fcc38df",
+        "sha256": "6d8238b9cc1bbb5f5766396c2db26f2219c0d0e5ca226fb81dcc44bdb35045e8"
+      },
+      {
+        "file": "fern_02/textures/fern_02_rough_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/fern_02/fern_02_rough_1k.exr",
+        "bytes": 267009,
+        "providerMD5": "1e937f3f3db87e520601f8e94363a5dc",
+        "sha256": "6bde0113a818f78ebcce524fe417b9617a8aadf2873a1948fdbb200cc27eaf3c"
+      },
+      {
+        "file": "fern_02/textures/fern_02_alpha_1k.png",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fern_02/fern_02_alpha_1k.png",
+        "bytes": 114589,
+        "providerMD5": "1421e5e36946c23a7ddcc907de89025c",
+        "sha256": "ea3c64284c7ebdeedf484d2d816eae92825ec526140c3bb83859ddc7a64001f9"
+      },
+      {
+        "file": "fern_02/textures/fern_02_nor_gl_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/fern_02/fern_02_nor_gl_1k.exr",
+        "bytes": 801563,
+        "providerMD5": "c4c2dc925e3ecdb86a6a123a21acfc5b",
+        "sha256": "318209d70836a9b078c395a2df26bcc732dae3df248ecd5d827005da7c8ff174"
+      },
+      {
+        "file": "fern_02/textures/fern_02_diff_1k.jpg",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_diff_1k.jpg",
+        "bytes": 315705,
+        "providerMD5": "82c18a6cfd5ae91c37c0e078f591181c",
+        "sha256": "a828a6e7b4c01c826911e2eac4b3afc7457dab7b3b392a31c681ed88b7d50029"
+      },
+      {
+        "file": "fern_02/textures/fern_02_diff_2k.jpg",
+        "channel": "Diffuse",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/fern_02/fern_02_diff_2k.jpg",
+        "bytes": 993703,
+        "providerMD5": "ba8bbb9dc9ff55bdc081565cd926d776",
+        "sha256": "9ee18172170728050871772e2cd6d8d37b52f9138e61b49b04486623f9caf84b"
+      },
+      {
+        "file": "fern_02/textures/fern_02_alpha_2k.png",
+        "channel": "Alpha",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/2k/fern_02/fern_02_alpha_2k.png",
+        "bytes": 230089,
+        "providerMD5": "ff18f7e8e869c58eac8f9c7d7c519f4a",
+        "sha256": "f51eb9b8f9f4b25a882f8fe12d1ef53ba69448bac7e71396ec1f05b684e9ea75"
+      },
+      {
+        "file": "fern_02/textures/fern_02_ao_1k.jpg",
+        "channel": "AO",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_ao_1k.jpg",
+        "bytes": 143666,
+        "providerMD5": "5f09365f0506a50b0d755195ce82c47d",
+        "sha256": "33e9d3cd0693208352c8ab6d482128484fa120a476147467c4359fd9c01316a2"
+      },
+      {
+        "file": "fern_02/textures/fern_02_nor_gl_1k.jpg",
+        "channel": "nor_gl",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_nor_gl_1k.jpg",
+        "bytes": 367222,
+        "providerMD5": "43aed63dff79554f6064627515afd9d7",
+        "sha256": "45bce132c6e96a0864bc89ab5da51361ab3f4afa83a6669ae499ab5ca811f621"
+      },
+      {
+        "file": "fern_02/textures/fern_02_rough_1k.jpg",
+        "channel": "Rough",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fern_02/fern_02_rough_1k.jpg",
+        "bytes": 208576,
+        "providerMD5": "282cac24b4e68c9848b64271b320a6a1",
+        "sha256": "a7386298267ae30662b66c381815bc1f496ef1a2f1fe167abfa7eedfeac08f3e"
+      }
+    ]
+  },
+  {
+    "id": "shrub_02",
+    "title": "Shrub 02",
+    "type": "model",
+    "authors": {
+      "Rico Cilliers": "All"
+    },
+    "source": "https://polyhaven.com/a/shrub_02",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "inspectedUtc": "2026-10-14T12:48:16.9982674Z",
+    "files": [
+      {
+        "file": "shrub_02/shrub_02_1k.fbx",
+        "channel": "FBX",
+        "resolution": "1k texture bindings",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/shrub_02/shrub_02_1k.fbx",
+        "bytes": 832300,
+        "providerMD5": "f4d00cbfa3dd3a6594e5b63c6324cb42",
+        "sha256": "7bd42e635ed83a9341a9953280845dc2685615a4a4a5441e31eedd39d5431ec8"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_rough_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/shrub_02/shrub_02_rough_1k.exr",
+        "bytes": 303276,
+        "providerMD5": "2d2096ee1d827f41ffaddd43ddf549cf",
+        "sha256": "a9f6cda20dc287fb27ab5c9a399284ae02e8abf032ad324f3083ebcf7f1987a5"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_alpha_1k.png",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/shrub_02/shrub_02_alpha_1k.png",
+        "bytes": 91741,
+        "providerMD5": "64a1f609d80ea076b43412498a3d2db5",
+        "sha256": "5c2c31bac311051db77443e1780078403c2df0a832c40fe6ed7bcd982695cdf0"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_diff_1k.jpg",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/shrub_02/shrub_02_diff_1k.jpg",
+        "bytes": 395120,
+        "providerMD5": "3f4ae281928de030c7d4e41ad5b88a8b",
+        "sha256": "9956eff294034d70516d867e9668428a23d782feb3d4c34061dce5e44bacd5a8"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_mask_1k.png",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/shrub_02/shrub_02_mask_1k.png",
+        "bytes": 12041,
+        "providerMD5": "5a6819b61eee81763aed06e9d16e9573",
+        "sha256": "5079f3b1136b10f715934f401c7f75b3fa015e24c92680f8758e09f8f0cdf7e2"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_nor_gl_1k.exr",
+        "channel": "FBX dependency",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/1k/shrub_02/shrub_02_nor_gl_1k.exr",
+        "bytes": 1050955,
+        "providerMD5": "7367f8e7fd4cc602acbc78952ce0898f",
+        "sha256": "e7a55808cea62a123f3f27a92d83a0d55aaadfe64bc7f75853f8f49f37fd63c9"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_diff_2k.jpg",
+        "channel": "Diffuse",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/shrub_02/shrub_02_diff_2k.jpg",
+        "bytes": 1319985,
+        "providerMD5": "c236bcd930367aa3a96efa01e0e503be",
+        "sha256": "ac1f0a16eef67a6e4884f3a5e913d7562f310c7a7a73d1f6039fbcd120445ca5"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_alpha_2k.png",
+        "channel": "Alpha",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/2k/shrub_02/shrub_02_alpha_2k.png",
+        "bytes": 198771,
+        "providerMD5": "315b0231f87e4f3aad07f1493a79bcb9",
+        "sha256": "e4b3970611262ab4869794bba127067774d0cdc4b7b6beb3293153f9eeeff72c"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_ao_1k.jpg",
+        "channel": "AO",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/shrub_02/shrub_02_ao_1k.jpg",
+        "bytes": 218540,
+        "providerMD5": "c3fa0d7f4f93536320aa2aa2574ce58a",
+        "sha256": "fae85244d9e57126c5fde6839051a5a0935bfd229d982c93208848d088af24af"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_nor_gl_1k.jpg",
+        "channel": "nor_gl",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/shrub_02/shrub_02_nor_gl_1k.jpg",
+        "bytes": 490815,
+        "providerMD5": "51a7f2db7e06a207171fd725585241d5",
+        "sha256": "54c24e433365d5410223b7ebd2b33042b80831f80976e10768114db5ef6911d7"
+      },
+      {
+        "file": "shrub_02/textures/shrub_02_rough_1k.jpg",
+        "channel": "Rough",
+        "resolution": "1k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/shrub_02/shrub_02_rough_1k.jpg",
+        "bytes": 252084,
+        "providerMD5": "2dd3a87a7ea8b184ba93084d5301e851",
+        "sha256": "32729396b3de22f35434260149975319d23897fef498f84782e9e5be61dd6dac"
+      }
+    ]
+  },
+  {
+    "id": "kloofendal_overcast_puresky",
+    "title": "Kloofendal Overcast (Pure Sky)",
+    "type": "HDRI",
+    "authors": {
+      "Greg Zaal": "All"
+    },
+    "source": "https://polyhaven.com/a/kloofendal_overcast_puresky",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "inspectedUtc": "2026-10-14T12:48:17.0861038Z",
+    "files": [
+      {
+        "file": "kloofendal_overcast_puresky/kloofendal_overcast_puresky_2k.hdr",
+        "channel": "HDRI",
+        "resolution": "2k",
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_overcast_puresky_2k.hdr",
+        "bytes": 4335717,
+        "providerMD5": "26462123fc5ce757a331553d05e4db37",
+        "sha256": "312b1b04b7f10057a4f1418abc59d1166c8933cc93fc72051502edaf8d6b2fcd"
+      }
+    ]
+  }
+]
