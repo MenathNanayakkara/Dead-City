@@ -24,6 +24,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
     private static readonly int Locomotion = Animator.StringToHash("Base Layer.Locomotion");
     private void Awake()
     {
+        ValidateStrideSettings();
         health = GetComponent<EnemyHealth>();
         movement = GetComponent<EnemyMovement>();
         combat = GetComponent<EnemyCombat>();
@@ -34,6 +35,18 @@ public sealed class EnemyAnimationController : MonoBehaviour
             enabled = false;
         }
     }
+
+    private void OnValidate() => ValidateStrideSettings();
+
+    private void ValidateStrideSettings()
+    {
+        walkStrideSpeed = PositiveStride(walkStrideSpeed, 1.675673f);
+        chaseStrideSpeed = PositiveStride(chaseStrideSpeed, 4.528451f);
+        visualStrideScale = PositiveStride(visualStrideScale, 1);
+    }
+
+    private static float PositiveStride(float value, float fallback) =>
+        float.IsNaN(value) || float.IsInfinity(value) ? fallback : Mathf.Max(.01f, value);
 
     private void Start()
     {
