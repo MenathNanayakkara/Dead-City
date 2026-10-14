@@ -154,6 +154,7 @@ public sealed class EliteBrain : MonoBehaviour
 
     private void Set(EliteAction value)
     {
+        if (Action == value && Time.time < actionUntil && !actor.Movement.Failed) return;
         if (Action != value) ReleaseCover();
         Action = value;
         committedUntil = Time.time + commitmentSeconds;
