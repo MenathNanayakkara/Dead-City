@@ -26,6 +26,26 @@ public sealed class HunterBrain : MonoBehaviour
         if (sensed.Visible) goal = actor.World.ApproachPosition(actor);
         else if (!actor.InvestigationGoal(out goal))
         { actor.Movement.Stop(); path.Clear(); return; }
+        bool changed = (goal - plannedGoal).sqrMagnitude > 4 || sensed.Visible != plannedVisible || actor.Movement.Failed;
+        if (Time.time >= earliestPlan && (changed || Time.time >= nextPlan || path.Count == 0))
+        {
+            earliestPlan = Time.time + .45f;
+            nextPlan = Time.time + replanInterval;
+            plannedGoal = goal;
+            plannedVisible = sensed.Visible;
+            bool found = graph != null && graph.FindPath(transform.position, goal, path);
+            waypoint = 0;
+            ExpandedNodes = graph != null ? graph.LastExpanded : 0;
+            PathCost = graph != null ? graph.LastPathCost : 0;
+            if (!found)
+            {
+                path.Clear();
+                actor.Decision = "Hunter / A* route unavailable";
+                actor.Movement.Stop();
+                return;
+            }
+            actor.Movement.ClearFailure();
+        }
         actor.Movement.Stop();
     }
 }
