@@ -18,3 +18,10 @@ def score_flank_concealment_travel(config: AmbusherConfig, player: Vec2, forward
     score = (flank * config.flank_weight + float(point.concealed) * config.concealment_weight
              + travel * config.travel_weight)
     return score, flank
+
+def score_interception_proximity(config: AmbusherConfig, player: Vec2, predicted: Vec2,
+                                 point: TacticalPoint) -> float:
+    player_distance = point.position.distance_to(player)
+    proximity = 1.0 - min(abs(player_distance - config.preferred_distance) / 25.0, 1.0)
+    intercept = 1.0 - min(point.position.distance_to(predicted) / 30.0, 1.0)
+    return intercept * config.intercept_weight + proximity * config.proximity_weight
