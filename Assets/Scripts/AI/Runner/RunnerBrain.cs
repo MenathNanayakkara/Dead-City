@@ -5,7 +5,7 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
 /// <summary>Member 2: utility scores plus bounded action commitments and rush recovery.</summary>
     [RequireComponent(typeof(EnemyActor))]
     [RequireComponent(typeof(EnemyCombat))]
-    public sealed class RunnerBrain : MonoBehaviour {
+public sealed class RunnerBrain : MonoBehaviour {
 
     private const float ShotgunThreatRange = 12f;
     private const float RushTriggerRange = 12f;
@@ -42,9 +42,8 @@ public enum RunnerAction { Chase, Attack, Caution, Flank, Disengage }
     private EnemyActor actor;
     private EnemyCombat combat;
 
-
-private void OnValidate()
-{
+    private void OnValidate()
+    {
     chaseSpeed = Mathf.Max(0f, chaseSpeed);
     cautionSpeed = Mathf.Max(0f, cautionSpeed);
 
@@ -63,8 +62,6 @@ private void OnValidate()
     combat = GetComponent<EnemyCombat>();
     nextThink = Random.value * .3f;
     }
-
-
     private void OnEnable()
     {
     if (combat == null)
@@ -72,7 +69,6 @@ private void OnValidate()
 
     combat.AttackStarted += OnAttack;
     }
-
     private void OnDisable(){
     if (combat != null)
         combat.AttackStarted -= OnAttack;
