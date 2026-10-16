@@ -71,14 +71,7 @@ public sealed class EliteBrain : MonoBehaviour
         var s = actor.Perception;
         if (actor.Health.Fraction < healthSnapshot) damagedUntil = Time.time + 3;
         healthSnapshot = actor.Health.Fraction;
-        if (!s.Visible)
-        {
-            ReleaseCover();
-            retreatUntil = 0;
-            actor.Investigate(advanceSpeed);
-            return;
-        }
-        if (actor.Health.Fraction < retreatHealth && Time.time < damagedUntil && Time.time >= nextRetreat)
+        if (s.Visible && actor.Health.Fraction < retreatHealth && Time.time < damagedUntil && Time.time >= nextRetreat)
         {
             retreatUntil = Time.time + 3;
             nextRetreat = Time.time + 12;
@@ -101,6 +94,13 @@ public sealed class EliteBrain : MonoBehaviour
         }
         if (Action == EliteAction.Retreat)
         { ReleaseCover(); Set(EliteAction.DirectAttack); advanceUntil = Time.time + 2; }
+        if (!s.Visible)
+        {
+            ReleaseCover();
+            retreatUntil = 0;
+            actor.Investigate(advanceSpeed);
+            return;
+        }
         NearbyAllies = actor.World.AlliesNear(actor, 12);
         bool reachable = actor.Movement.Reachable(s.TargetPosition);
         bool canStrike = actor.Combat.CanStartAttack;
