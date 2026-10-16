@@ -90,7 +90,12 @@ public sealed class EliteBrain : MonoBehaviour
             if (!MoveToCover(true))
             {
                 retreatUntil = 0;
+                ReleaseCover();
                 actor.Movement.Stop(); // A failed retreat must not become a blind charge.
+                Action = EliteAction.DirectAttack;
+                committedUntil = actionUntil = 0;
+                advanceUntil = Time.time + 2;
+                actor.Decision = "Elite / retreat unavailable";
             }
             return;
         }
