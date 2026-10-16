@@ -64,5 +64,7 @@ class TacticalSearch:
                 self.config, player, predicted, point
             )
             candidates.append(ScoredPoint(point, score, path_cost))
-        return max(candidates, key=lambda item: item.score, default=None)
+        return min(candidates,
+                   key=lambda item: (-item.score, item.path_cost, item.point.point_id),
+                   default=None)
 
