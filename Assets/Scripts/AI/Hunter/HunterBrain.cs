@@ -46,6 +46,15 @@ public sealed class HunterBrain : MonoBehaviour
             }
             actor.Movement.ClearFailure();
         }
-        actor.Movement.Stop();
+        while (waypoint < path.Count && Vector3.Distance(transform.position, path[waypoint]) < .6f) waypoint++;
+        if (waypoint < path.Count)
+        {
+            actor.Decision = sensed.Visible ? "Hunter / track with A*" : "Hunter / investigate with A*";
+            bool final = waypoint == path.Count - 1;
+            if (!actor.Movement.MoveTo(path[waypoint], speed, final ? 1.2f : .2f)) nextPlan = 0;
+            actor.Movement.OpenNearbyDoor();
+        }
+        else actor.Movement.Stop();
     }
+
 }
