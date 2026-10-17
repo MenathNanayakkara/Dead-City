@@ -21,7 +21,9 @@ public sealed class HunterBrain : MonoBehaviour
     {
         if (!actor.TickDue(ref nextThink, .15f)) return;
         if (graph == null) graph = actor.World.GetComponent<HunterNavigationGraph>();
+        if (actor.Combat.IsAttacking) { actor.Decision = "Hunter / committed strike"; return; }
         var sensed = actor.Perception;
+        if (actor.Combat.TryAttack()) { path.Clear(); return; }
         Vector3 goal;
         if (sensed.Visible) goal = actor.World.ApproachPosition(actor);
         else if (!actor.InvestigationGoal(out goal))
