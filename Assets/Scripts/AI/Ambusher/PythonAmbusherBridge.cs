@@ -1,122 +1,141 @@
-using System;
-using System.Diagnostics;
-using System.IO;
 using UnityEngine;
 
-/// <summary>
-/// Optional development bridge for demonstrating that decisions originate in the Python engine.
-/// Keep disabled in production builds unless Python is deployed beside the game.
-/// </summary>
-[RequireComponent(typeof(EnemyActor))]
-public sealed class PythonAmbusherBridge : MonoBehaviour
+public enum AmbusherState { Observe, Evaluate, Move, Wait, Strike, Reposition, Warn }
+
+/// <summary>Member 3: concealed positioning, observation-based interception and explicit state exits.</summary>
+public sealed class AmbusherBrain : MonoBehaviour
 {
-    [SerializeField] private bool launchPython;
-    [SerializeField] private string pythonExecutable = "python";
-    [SerializeField, Min(.05f)] private float decisionInterval = .2f;
+    [SerializeField] private float travelSpeed = 3.1f;
+    [SerializeField] private float strikeSpeed = 4.4f;
+    [SerializeField] private float flankWeight = .3f;
+    [SerializeField] private float concealmentWeight = .25f;
+    [SerializeField] private float travelWeight = .15f;
+    [SerializeField] private float interceptWeight = .15f;
+    [SerializeField] private float proximityWeight = .15f;
+    [SerializeField, Min(.2f)] private float warningSeconds = .6f;
+    [SerializeField, Min(1)] private float opportunityRange = 7;
     private EnemyActor actor;
-    private Process process;
-    private float nextDecision;
+    private float nextThink, stateUntil, nextAmbush;
+    private MapMarker selected, rejected;
+    public AmbusherState State { get; private set; }
+    public MapMarker Selected => selected;
+    public float[] PointScores { get; private set; }
 
-    [Serializable]
-    private sealed class Request
-    {
-        public float now;
-        public float[] agent;
-        public float[] player;
-        public float[] forward;
-        public float[] velocity;
-        public bool visible;
-        public bool reloading;
-        public bool route_failed;
-        public bool attack_ready;
-    }
-
-    [Serializable]
-    private sealed class Response
-    {
-        public string command;
-        public string state;
-        public float[] target;
-        public string reason;
-        public string error;
-    }
-
-    private void Awake() => actor = GetComponent<EnemyActor>();
-
-    private void OnEnable()
-    {
-        if (!launchPython) return;
-        string root = Directory.GetParent(Application.dataPath).FullName;
-        process = new Process
-        {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = pythonExecutable,
-                Arguments = "-m PythonAI.ambusher.service",
-                WorkingDirectory = root,
-                UseShellExecute = false,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            }
-        };
-        process.Start();
-    }
+    private void Awake() { actor = GetComponent<EnemyActor>(); stateUntil = Time.time + .75f; }
+    private void OnDisable() => ReleasePosition();
 
     private void Update()
     {
-        if (process == null || process.HasExited || actor == null || !actor.CanThink || Time.time < nextDecision) return;
-        nextDecision = Time.time + decisionInterval;
-        var senses = actor.Perception;
-        var request = new Request
+        if (actor.CanThink && !actor.Combat.IsAttacking && actor.Perception.HasMemory &&
+            (State == AmbusherState.Wait || State == AmbusherState.Warn))
+            actor.Movement.Face(actor.Perception.LastKnownPosition);
+        if (!actor.TickDue(ref nextThink, .2f) || actor.Combat.IsAttacking) return;
+        var s = actor.Perception;
+        if (!s.HasMemory)
         {
-            now = Time.time,
-            agent = Pair(transform.position),
-            player = senses.HasMemory ? Pair(senses.LastKnownPosition) : null,
-            forward = Pair(senses.ObservedForward),
-            velocity = Pair(senses.ObservedVelocity),
-            visible = senses.Visible,
-            reloading = senses.PlayerReloading,
-            route_failed = actor.Movement.Failed,
-            attack_ready = actor.Combat.IsReady
-        };
-        process.StandardInput.WriteLine(JsonUtility.ToJson(request));
-        Response response = JsonUtility.FromJson<Response>(process.StandardOutput.ReadLine());
-        if (response == null || !string.IsNullOrEmpty(response.error)) return;
-        Apply(response);
-    }
-
-    private void Apply(Response response)
-    {
-        actor.Decision = "Python Ambusher / " + response.state + " / " + response.reason;
-        Vector3 target = response.target != null && response.target.Length == 2
-            ? new Vector3(response.target[0], transform.position.y, response.target[1])
-            : transform.position;
-        switch (response.command)
+            SetState(AmbusherState.Observe, .75f);
+            actor.Investigate(travelSpeed);
+            return;
+        }
+        if (State == AmbusherState.Observe && Time.time >= stateUntil)
+            SetState(AmbusherState.Evaluate, 0);
+        if (State == AmbusherState.Evaluate || State == AmbusherState.Reposition)
         {
-            case "move":
-            case "investigate": actor.Movement.MoveTo(target, 3.1f, .6f); break;
-            case "face":
-            case "warn": actor.Movement.Stop(); actor.Movement.Face(target); break;
-            case "attack": actor.Combat.TryAttack(); break;
-            default: actor.Movement.Stop(); break;
+            if (Time.time < nextAmbush) { SetState(AmbusherState.Strike, 4); }
+            else
+            {
+                var candidate = ChoosePoint();
+                if (candidate != null && actor.World.Reserve(candidate, actor))
+                {
+                    selected = candidate;
+                    actor.Movement.ClearFailure();
+                    SetState(AmbusherState.Move, 12);
+                }
+                else { nextAmbush = Time.time + 5; SetState(AmbusherState.Strike, 4); }
+            }
+        }
+        if (State == AmbusherState.Move)
+        {
+            if (selected == null || Time.time >= stateUntil || actor.Movement.Failed)
+            { rejected = selected; SetState(AmbusherState.Reposition, 0); return; }
+            if (s.Visible && s.Distance <= actor.Combat.Range + .5f)
+            { SetState(AmbusherState.Warn, warningSeconds); return; }
+            if (Vector3.Distance(transform.position, selected.transform.position) < 1.3f)
+            { actor.Movement.Stop(); SetState(AmbusherState.Wait, 8); }
+            else if (!actor.Movement.MoveTo(selected.transform.position, travelSpeed, .6f))
+            { rejected = selected; SetState(AmbusherState.Reposition, 0); }
+            actor.Movement.OpenNearbyDoor();
+        }
+        if (State == AmbusherState.Wait)
+        {
+            bool playerLooking = s.Visible && Vector3.Dot(s.ObservedForward,
+                (transform.position - s.TargetPosition).normalized) > .55f;
+            bool opportunity = s.Visible && s.Distance <= opportunityRange && (!playerLooking || s.PlayerReloading);
+            if (opportunity) SetState(AmbusherState.Warn, warningSeconds);
+            else if (playerLooking || Time.time >= stateUntil)
+            { rejected = selected; nextAmbush = Time.time + 1; SetState(AmbusherState.Reposition, 0); }
+            // Waiting expires into relocation, never a blind strike.
+        }
+        if (State == AmbusherState.Warn)
+        {
+            actor.Movement.Stop();
+            actor.Movement.Face(s.LastKnownPosition);
+            if (Time.time >= stateUntil) SetState(AmbusherState.Strike, 4);
+            return;
+        }
+        if (State == AmbusherState.Strike)
+        {
+            if (!s.Visible) { actor.Investigate(travelSpeed); if (Time.time >= stateUntil) SetState(AmbusherState.Reposition, 0); return; }
+            if (actor.Combat.TryAttack())
+            { nextAmbush = Time.time + actor.Combat.Duration + 2; SetState(AmbusherState.Reposition, 0); return; }
+            if (Time.time >= stateUntil)
+            { SetState(AmbusherState.Reposition, 0); actor.Movement.Stop(); return; }
+            actor.Approach(strikeSpeed);
         }
     }
 
-    private static float[] Pair(Vector3 value) => new[] { value.x, value.z };
-
-    private void OnDisable()
+    private void SetState(AmbusherState next, float seconds)
     {
-        if (process == null) return;
-        try
+        if (next != AmbusherState.Move && next != AmbusherState.Wait) ReleasePosition();
+        State = next;
+        stateUntil = Time.time + seconds;
+        actor.Decision = "Tactical: " + next;
+    }
+
+    private void ReleasePosition()
+    {
+        if (actor != null && actor.World != null) actor.World.Release(actor);
+        selected = null;
+    }
+
+    public MapMarker ChoosePoint()
+    {
+        var world = actor.World;
+        var points = world.tacticalPoints;
+        if (points == null) return null;
+        if (PointScores == null || PointScores.Length != points.Length) PointScores = new float[points.Length];
+        MapMarker best = null;
+        float bestScore = float.NegativeInfinity;
+        var s = actor.Perception;
+        Vector3 player = s.LastKnownPosition, predicted = player + s.ObservedVelocity * 1.5f;
+        for (int i = 0; i < points.Length; i++)
         {
-            process.StandardInput.Close();
-            if (!process.WaitForExit(250)) process.Kill();
+            var point = points[i];
+            PointScores[i] = -1;
+            if (point == null || point == rejected || (point.kind != MapMarkerKind.Ambush && point.kind != MapMarkerKind.Cover) ||
+                !world.Available(point, actor) || !actor.Movement.TryPathLength(point.transform.position, out float pathLength)) continue;
+            Vector3 p = point.transform.position, relative = p - player;
+            bool concealed = Physics.Linecast(player + Vector3.up, p + Vector3.up, world.obstructionMask, QueryTriggerInteraction.Ignore);
+            float flank = (1 - Vector3.Dot(s.ObservedForward, relative.normalized)) * .5f;
+            if (!concealed && flank < .65f) continue;
+            float travel = 1 - Mathf.Clamp01(pathLength / 40);
+            float proximity = 1 - Mathf.Clamp01(Mathf.Abs(relative.magnitude - 8) / 25);
+            float intercept = 1 - Mathf.Clamp01(Vector3.Distance(p, predicted) / 30);
+            float score = flank * flankWeight + (concealed ? 1 : 0) * concealmentWeight + travel * travelWeight +
+                intercept * interceptWeight + proximity * proximityWeight;
+            PointScores[i] = score;
+            if (score > bestScore) { bestScore = score; best = point; }
         }
-        catch (InvalidOperationException) { }
-        process.Dispose();
-        process = null;
+        return best;
     }
 }
-
