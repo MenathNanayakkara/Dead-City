@@ -125,6 +125,8 @@ public sealed class EnemyAnimationController : MonoBehaviour
             animator.ResetTrigger(Attack);
             animator.ResetTrigger(Heavy);
             animator.ResetTrigger(Hit);
+            animator.SetFloat(Speed, 0);
+            animator.SetFloat("GaitScale", 1);
             animator.SetBool(Dead, true);
         }
     }
