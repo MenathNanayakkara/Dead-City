@@ -114,7 +114,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnHit(float amount)
     {
-        if (animator != null && !combat.IsAttacking)
+        if (animator != null && health != null && !health.IsDead && combat != null && !combat.IsAttacking)
             animator.SetTrigger(Hit);
     }
 
@@ -131,6 +131,7 @@ public sealed class EnemyAnimationController : MonoBehaviour
 
     private void OnAttack(bool heavy, float duration)
     {
+        if (health == null || health.IsDead) return;
         if (duration <= 0 || float.IsNaN(duration) || float.IsInfinity(duration)) return;
         if (animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null)
         {
