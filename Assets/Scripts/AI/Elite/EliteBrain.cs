@@ -44,7 +44,15 @@ public sealed class EliteBrain : MonoBehaviour
     private static float ValidSetting(float value, float minimum, float fallback) =>
         float.IsNaN(value) || float.IsInfinity(value) ? fallback : Mathf.Max(minimum, value);
 
-    private void OnDisable() => ReleaseCover();
+    private void OnDisable()
+    {
+        ReleaseCover();
+        if (actor != null && actor.Movement != null) actor.Movement.Stop();
+        retreatUntil = committedUntil = actionUntil = advanceUntil = nextThink = 0;
+        Action = EliteAction.DirectAttack;
+        System.Array.Clear(Scores, 0, Scores.Length);
+        // Attack and retreat cooldowns survive disabling; only transient decisions are reset.
+    }
 
     public static void Score(float distance, float weakness, bool shotgun, bool firing, int allies,
         bool reachable, bool heavyReady, float range, float[] scores)
