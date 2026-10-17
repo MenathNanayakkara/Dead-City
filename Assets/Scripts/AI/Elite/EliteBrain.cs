@@ -176,6 +176,8 @@ public sealed class EliteBrain : MonoBehaviour
 
     private bool MoveToCover(bool retreat)
     {
+        if (cover != null && (!actor.World.Available(cover, actor) ||
+            !actor.Movement.Reachable(cover.transform.position))) ReleaseCover();
         if (cover == null)
         {
             float highest = float.NegativeInfinity;
