@@ -5,6 +5,7 @@ public sealed class HunterBrain : MonoBehaviour
 {
     [SerializeField] private float speed = 2.25f;
     [SerializeField, Min(.5f)] private float replanInterval = 1.5f;
+    [SerializeField] private bool drawPath;
     private EnemyActor actor;
     private HunterNavigationGraph graph;
     private float nextThink, nextPlan, earliestPlan;
@@ -59,4 +60,10 @@ public sealed class HunterBrain : MonoBehaviour
         else actor.Movement.Stop();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawPath) return;
+        Gizmos.color = Color.yellow;
+        for (int i = 1; i < path.Count; i++) Gizmos.DrawLine(path[i - 1] + Vector3.up * .1f, path[i] + Vector3.up * .1f);
+    }
 }
