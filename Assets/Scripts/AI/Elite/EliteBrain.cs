@@ -145,7 +145,16 @@ public sealed class EliteBrain : MonoBehaviour
         {
             if (actor.Combat.TryAttack(true))
             { nextHeavy = Time.time + heavyCooldown; actionUntil = 0; }
-            else { Set(EliteAction.DirectAttack); actor.Approach(advanceSpeed); }
+            else
+            {
+                Set(EliteAction.DirectAttack);
+                if (reachable) actor.Approach(advanceSpeed);
+                else
+                {
+                    actor.Movement.Stop();
+                    actor.Decision = "Elite / heavy attack unavailable, route blocked";
+                }
+            }
             return;
         }
         if (Action == EliteAction.Reposition)
