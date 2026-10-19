@@ -8,6 +8,7 @@ public sealed class EliteBrain : MonoBehaviour
     [SerializeField, Min(0)] private float advanceSpeed = 2.8f;
     [SerializeField, Min(0)] private float pushSpeed = 4;
     [SerializeField, Min(0)] private float heavyCooldown = 6;
+    [SerializeField, Min(.05f)] private float heavyRetryDelay = .6f;
     [SerializeField, Range(0, 1)] private float retreatHealth = .25f;
     [SerializeField, Min(0)] private float aggressionWeight = 1;
     [SerializeField, Min(0)] private float tacticalWeight = 1;
@@ -15,6 +16,7 @@ public sealed class EliteBrain : MonoBehaviour
     private EnemyActor actor;
     private float nextThink, nextHeavy, nextRetreat, retreatUntil, committedUntil, actionUntil, advanceUntil;
     private float healthSnapshot = 1, damagedUntil;
+    private float nextHeavyRetry;
     private MapMarker cover;
     public EliteAction Action { get; private set; }
     public float[] Scores { get; } = new float[5];
@@ -35,6 +37,7 @@ public sealed class EliteBrain : MonoBehaviour
         advanceSpeed = ValidSetting(advanceSpeed, 0, 2.8f);
         pushSpeed = ValidSetting(pushSpeed, 0, 4);
         heavyCooldown = ValidSetting(heavyCooldown, 0, 6);
+        heavyRetryDelay = ValidSetting(heavyRetryDelay, .05f, .6f);
         retreatHealth = Mathf.Clamp01(ValidSetting(retreatHealth, 0, .25f));
         aggressionWeight = ValidSetting(aggressionWeight, 0, 1);
         tacticalWeight = ValidSetting(tacticalWeight, 0, 1);
@@ -113,7 +116,7 @@ public sealed class EliteBrain : MonoBehaviour
         bool reachable = actor.Movement.Reachable(s.TargetPosition);
         bool canStrike = actor.Combat.CanStartAttack;
         Score(s.Distance, s.PlayerWeakness, s.Weapon == WeaponCategory.Shotgun, s.PlayerFiring,
-            NearbyAllies, reachable, Time.time >= nextHeavy && canStrike, actor.Combat.Range, Scores);
+            NearbyAllies, reachable, Time.time >= nextHeavy && Time.time >= nextHeavyRetry && canStrike, actor.Combat.Range, Scores);
         Scores[0] *= aggressionWeight;
         Scores[2] *= aggressionWeight;
         Scores[3] *= tacticalWeight;
@@ -144,9 +147,10 @@ public sealed class EliteBrain : MonoBehaviour
         if (Action == EliteAction.HeavyAttack)
         {
             if (actor.Combat.TryAttack(true))
-            { nextHeavy = Time.time + heavyCooldown; actionUntil = 0; }
+            { nextHeavy = Time.time + heavyCooldown; nextHeavyRetry = 0; actionUntil = 0; }
             else
             {
+                nextHeavyRetry = Time.time + heavyRetryDelay;
                 Set(EliteAction.DirectAttack);
                 if (reachable) actor.Approach(advanceSpeed);
                 else
