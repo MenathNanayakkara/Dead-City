@@ -187,9 +187,10 @@ public sealed class EliteBrain : MonoBehaviour
             }
             return;
         }
-        if (Action == EliteAction.Push) actor.World.EncourageAdvance(actor, 12, 1.5f);
         if (actor.Combat.TryAttack()) { actionUntil = 0; return; }
         actor.Approach(Action == EliteAction.Push ? pushSpeed : advanceSpeed);
+        if (Action == EliteAction.Push && !actor.Movement.Failed && actor.Movement.HasPath)
+            actor.World.EncourageAdvance(actor, 12, 1.5f);
     }
 
     private void Set(EliteAction value)
