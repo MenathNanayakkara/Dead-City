@@ -169,8 +169,22 @@ public sealed class EliteBrain : MonoBehaviour
         if (Action == EliteAction.MaintainDistance)
         {
             Vector3 away = Vector3.ProjectOnPlane(transform.position - s.TargetPosition, Vector3.up).normalized;
-            if (!actor.Movement.MoveTo(s.TargetPosition + away * 7, advanceSpeed))
-            { Set(EliteAction.DirectAttack); actor.Approach(advanceSpeed); }
+            if (away.sqrMagnitude < .01f)
+            {
+                away = -Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+                if (away.sqrMagnitude < .01f) away = Vector3.back;
+            }
+            Vector3 spacingGoal = s.TargetPosition + away * 7;
+            if (!actor.Movement.Reachable(spacingGoal) || !actor.Movement.MoveTo(spacingGoal, advanceSpeed))
+            {
+                Set(EliteAction.DirectAttack);
+                if (reachable) actor.Approach(advanceSpeed);
+                else
+                {
+                    actor.Movement.Stop();
+                    actor.Decision = "Elite / spacing unavailable, route blocked";
+                }
+            }
             return;
         }
         if (Action == EliteAction.Push) actor.World.EncourageAdvance(actor, 12, 1.5f);
