@@ -22,6 +22,30 @@ public sealed class EliteBrain : MonoBehaviour
     public float[] Scores { get; } = new float[5];
     public int NearbyAllies { get; private set; }
     public MapMarker Cover => cover;
+    public float HeavyCooldownRemaining => Mathf.Max(0, nextHeavy - Time.time);
+    public float HeavyRetryRemaining => Mathf.Max(0, nextHeavyRetry - Time.time);
+    public float RetreatRemaining => Mathf.Max(0, retreatUntil - Time.time);
+    public float RetreatCooldownRemaining => Mathf.Max(0, nextRetreat - Time.time);
+    public float CommitmentRemaining => Mathf.Max(0, committedUntil - Time.time);
+    public float CurrentUtility
+    {
+        get
+        {
+            int index = (int)Action;
+            if (index < 0 || index >= Scores.Length) return 0;
+            float score = Scores[index];
+            return float.IsNaN(score) || float.IsInfinity(score) ? 0 : Mathf.Max(0, score);
+        }
+    }
+
+    [ContextMenu("Log Elite decision diagnostics")]
+    private void LogDecisionDiagnostics()
+    {
+        Debug.Log($"Elite {Action}: utility {CurrentUtility:F2}, allies {NearbyAllies}, " +
+            $"heavy cooldown {HeavyCooldownRemaining:F2}s, retry {HeavyRetryRemaining:F2}s, " +
+            $"retreat {RetreatRemaining:F2}s, retreat cooldown {RetreatCooldownRemaining:F2}s, " +
+            $"commitment {CommitmentRemaining:F2}s, cover {(cover != null ? "reserved" : "none")}.", this);
+    }
 
     private void Awake()
     {
