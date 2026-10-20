@@ -78,6 +78,7 @@ public sealed class EliteBrain : MonoBehaviour
         retreatUntil = committedUntil = actionUntil = advanceUntil = nextThink = 0;
         Action = EliteAction.DirectAttack;
         System.Array.Clear(Scores, 0, Scores.Length);
+        NearbyAllies = 0;
         // Attack and retreat cooldowns survive disabling; only transient decisions are reset.
     }
 
@@ -103,6 +104,8 @@ public sealed class EliteBrain : MonoBehaviour
     private void Update()
     {
         if (!actor.TickDue(ref nextThink, .3f) || actor.Combat.IsAttacking) return;
+        System.Array.Clear(Scores, 0, Scores.Length);
+        NearbyAllies = 0;
         var s = actor.Perception;
         if (actor.Health.Fraction < healthSnapshot) damagedUntil = Time.time + 3;
         healthSnapshot = actor.Health.Fraction;
