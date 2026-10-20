@@ -112,6 +112,39 @@ public sealed class EnemyAnimationController : MonoBehaviour
         return (float)System.Math.Max(.08f, System.Math.Min(3f, cadence));
     }
 
+    /// <summary>Checks an initialized runtime Animator without changing the rig or navigation.</summary>
+    public bool ValidateIntegration(out string reason)
+    {
+        var targetAnimator = animator != null ? animator : GetComponentInChildren<Animator>();
+        if (!enabled || GetComponent<EnemyHealth>() == null || GetComponent<EnemyMovement>() == null || GetComponent<EnemyCombat>() == null)
+        { reason = "Enemy animation requires enabled control, health, movement and combat components."; return false; }
+        var navigation = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (navigation == null || !navigation.enabled || !navigation.updatePosition)
+        { reason = "Navigation must be enabled and own the character position."; return false; }
+        if (targetAnimator == null || !targetAnimator.isActiveAndEnabled || targetAnimator.runtimeAnimatorController == null)
+        { reason = "An active Animator with a controller is required."; return false; }
+        if (targetAnimator.avatar == null || !targetAnimator.avatar.isValid)
+        { reason = "The Animator requires a valid avatar."; return false; }
+        if (targetAnimator.applyRootMotion)
+        { reason = "Root motion must be disabled while navigation owns character movement."; return false; }
+        if (!IsPositiveFinite(walkStrideSpeed) || !IsPositiveFinite(chaseStrideSpeed) || !IsPositiveFinite(visualStrideScale))
+        { reason = "Stride calibration values must be finite and positive."; return false; }
+        foreach (string state in new[] { "Locomotion", "Chase", "Attack", "Heavy", "Hit", "Death" })
+            if (!targetAnimator.HasState(0, Animator.StringToHash("Base Layer." + state)))
+            { reason = "Missing required Animator state: " + state; return false; }
+        reason = null;
+        return true;
+    }
+
+    private static bool IsPositiveFinite(float value) => value > 0 && !float.IsInfinity(value);
+
+    [ContextMenu("Validate runtime movement and animation integration")]
+    private void CheckIntegration()
+    {
+        if (ValidateIntegration(out string reason)) Debug.Log("Enemy movement and animation integration checks passed.", this);
+        else Debug.LogError(reason, this);
+    }
+
     private void OnHit(float amount)
     {
         if (animator != null && health != null && !health.IsDead && combat != null && !combat.IsAttacking)
