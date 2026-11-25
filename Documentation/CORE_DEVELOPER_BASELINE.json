@@ -1,0 +1,426 @@
+﻿{
+    "SchemaVersion":  1,
+    "CheckedAt":  "2026-10-06T11:59:31.9750612+05:30",
+    "Repository":  "GV_game",
+    "ProjectRoot":  ".",
+    "Required":  69,
+    "Present":  0,
+    "Missing":  69,
+    "Complete":  false,
+    "Assets":  [
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Hunter_Sculpt4.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Hunter_Sculpt4_EditableMaterials.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Hunter_BaseColor_4K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Hunter_Normal_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Hunter_Roughness_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Hunter_Metallic_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "FBX export",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/UnityExports/Hunter_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Unity model",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Hunter_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Unity model metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Hunter_Animated.fbx.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Unity material",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Hunter_Sculpt4_PBR_Atlas.mat",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Unity material metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Hunter_Sculpt4_PBR_Atlas.mat.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Enemy prefab",
+                       "Path":  "Assets/Prefabs/Enemies/Hunter.prefab",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Enemy prefab metadata",
+                       "Path":  "Assets/Prefabs/Enemies/Hunter.prefab.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Blender preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Hunter_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Blender face preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Hunter_Face_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Hunter",
+                       "Group":  "Technical evidence",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Evidence/Hunter.json",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Runner_Sculpt4.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Runner_Sculpt4_EditableMaterials.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Runner_BaseColor_4K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Runner_Normal_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Runner_Roughness_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Runner_Metallic_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "FBX export",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/UnityExports/Runner_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Unity model",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Runner_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Unity model metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Runner_Animated.fbx.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Unity material",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Runner_Sculpt4_PBR_Atlas.mat",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Unity material metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Runner_Sculpt4_PBR_Atlas.mat.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Enemy prefab",
+                       "Path":  "Assets/Prefabs/Enemies/Runner.prefab",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Enemy prefab metadata",
+                       "Path":  "Assets/Prefabs/Enemies/Runner.prefab.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Blender preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Runner_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Blender face preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Runner_Face_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Runner",
+                       "Group":  "Technical evidence",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Evidence/Runner.json",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Ambusher_Sculpt4.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Ambusher_Sculpt4_EditableMaterials.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Ambusher_BaseColor_4K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Ambusher_Normal_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Ambusher_Roughness_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Ambusher_Metallic_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "FBX export",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/UnityExports/Ambusher_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Unity model",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Ambusher_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Unity model metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Ambusher_Animated.fbx.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Unity material",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Ambusher_Sculpt4_PBR_Atlas.mat",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Unity material metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Ambusher_Sculpt4_PBR_Atlas.mat.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Enemy prefab",
+                       "Path":  "Assets/Prefabs/Enemies/Ambusher.prefab",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Enemy prefab metadata",
+                       "Path":  "Assets/Prefabs/Enemies/Ambusher.prefab.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Blender preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Ambusher_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Blender face preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Ambusher_Face_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Ambusher",
+                       "Group":  "Technical evidence",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Evidence/Ambusher.json",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Elite_Sculpt4.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Blender source",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Elite_Sculpt4_EditableMaterials.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Elite_BaseColor_4K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Elite_Normal_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Elite_Roughness_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Source texture",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Textures/Elite_Metallic_2K.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "FBX export",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/UnityExports/Elite_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Unity model",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Elite_Animated.fbx",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Unity model metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Models/Elite_Animated.fbx.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Unity material",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Elite_Sculpt4_PBR_Atlas.mat",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Unity material metadata",
+                       "Path":  "Assets/Art/CustomEnemies/Materials/Elite_Sculpt4_PBR_Atlas.mat.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Enemy prefab",
+                       "Path":  "Assets/Prefabs/Enemies/Elite.prefab",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Enemy prefab metadata",
+                       "Path":  "Assets/Prefabs/Enemies/Elite.prefab.meta",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Blender preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Elite_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Blender face preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Elite_Face_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Elite",
+                       "Group":  "Technical evidence",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Evidence/Elite.json",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Shared",
+                       "Group":  "Review scene",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Blender/Four_Enemies_Sculpt4_Review.blend",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Shared",
+                       "Group":  "Lineup preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Four_Enemies_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Shared",
+                       "Group":  "Motion preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Walk_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Shared",
+                       "Group":  "Motion preview",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Previews/Attack_Actual_Blender.png",
+                       "Present":  false
+                   },
+                   {
+                       "Character":  "Shared",
+                       "Group":  "Technical evidence",
+                       "Path":  "ArtSource/CustomEnemies/SculptTextureRevision4/Evidence/review.json",
+                       "Present":  false
+                   }
+               ]
+}
