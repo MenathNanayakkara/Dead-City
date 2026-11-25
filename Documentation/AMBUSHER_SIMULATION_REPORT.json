@@ -1,0 +1,33 @@
+{
+  "commands": [
+    {
+      "time": 0.0,
+      "state": "move",
+      "command": "move",
+      "reason": "weighted tactical selection",
+      "score": 0.8489633370865682
+    },
+    {
+      "time": 1.0,
+      "state": "move",
+      "command": "move",
+      "reason": "follow dynamic A* route",
+      "score": null
+    },
+    {
+      "time": 2.0,
+      "state": "wait",
+      "command": "evaluate_opportunity",
+      "reason": "player reload event"
+    }
+  ],
+  "metrics": {
+    "replans": 0,
+    "state_transitions": 3,
+    "events": [
+      "0.00: evaluate - evidence ready",
+      "0.00: move - best tactical point reserved",
+      "2.00: wait - hiding position reached"
+    ]
+  }
+}
