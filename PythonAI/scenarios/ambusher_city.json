@@ -1,0 +1,20 @@
+{
+  "agent_start": [0, 0],
+  "player_start": [8, 8],
+  "nodes": {
+    "spawn": [0, 0], "alley": [3, 1], "junction": [6, 3], "cover_west": [4, 8],
+    "cover_east": [11, 6], "player_lane": [8, 8], "service_route": [1, 6]
+  },
+  "edges": [
+    ["spawn", "alley", 3.2], ["spawn", "service_route", 6.1], ["alley", "junction", 3.6],
+    ["junction", "cover_west", 5.4], ["junction", "cover_east", 5.3],
+    ["cover_west", "player_lane", 4.0], ["cover_east", "player_lane", 3.7],
+    ["service_route", "cover_west", 4.2]
+  ],
+  "tactical_points": [
+    {"id": "west-shadow", "node": "cover_west", "concealed": true, "kind": "ambush"},
+    {"id": "east-car", "node": "cover_east", "concealed": true, "kind": "cover"},
+    {"id": "open-junction", "node": "junction", "concealed": false, "kind": "ambush"}
+  ]
+}
+

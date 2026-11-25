@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dead-city-ambusher-ai"
+version = "1.0.0"
+description = "Deterministic Python decision engine for the Dead City Ambusher agent"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["PythonAI/tests"]
+pythonpath = ["."]
+addopts = "-q"
+
