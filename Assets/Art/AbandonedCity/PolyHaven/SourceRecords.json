@@ -1,0 +1,334 @@
+[
+  {
+    "source": "https://polyhaven.com/a/asphalt_02",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "336af399fd98a39ab986d8b3bf73b4ff",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_02/asphalt_02_diff_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "338da8de636ea36133170578cac82e8e",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "ec80a2929797c1b3ffc121c4f665585a",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_rough_1k.jpg"
+      }
+    ],
+    "title": "Asphalt 02",
+    "id": "asphalt_02",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/brick_wall_001",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "0f478f67d252a1fa7b351460a19965bd",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brick_wall_001/brick_wall_001_diffuse_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "be151875ed0897fc716aeef6daac8bd5",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brick_wall_001/brick_wall_001_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "618ceca60a4321aecc6d61eebe53d551",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brick_wall_001/brick_wall_001_rough_1k.jpg"
+      }
+    ],
+    "title": "Brick Wall 001",
+    "id": "brick_wall_001",
+    "authors": {
+      "Rob Tuytel": "Processing",
+      "Dimitrios Savva": "Photography"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/cracked_concrete_wall",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "a3ccca5dc9d12faefbe5351bc880fb76",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cracked_concrete_wall/cracked_concrete_wall_diff_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "1a3db636c2527165a8902f08dc13a2ee",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cracked_concrete_wall/cracked_concrete_wall_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "098a121303fd9fa4d272a1eb7d8d356c",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cracked_concrete_wall/cracked_concrete_wall_rough_1k.jpg"
+      }
+    ],
+    "title": "Cracked Concrete Wall",
+    "id": "cracked_concrete_wall",
+    "authors": {
+      "Dimitrios Savva": "Photography, processing",
+      "Rico Cilliers": "Guidance"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/rusty_corrugated_iron",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "73a2ec580289d7bf27eb0e1c55fda0bc",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rusty_corrugated_iron/rusty_corrugated_iron_diff_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "b4effdfcd2ec71faa91bb6c92f531f48",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_corrugated_iron/rusty_corrugated_iron_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "dda9d483f1326a56a1b70671b1a1f53b",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_corrugated_iron/rusty_corrugated_iron_rough_1k.jpg"
+      }
+    ],
+    "title": "Rusty Corrugated Iron",
+    "id": "rusty_corrugated_iron",
+    "authors": {
+      "Charlotte Baglioni": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/wood_planks_grey",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "91ca23c2f5584014f465a3a50ada472f",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks_grey/wood_planks_grey_diff_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "fe633ea606ac22b732d4204a7fa52b03",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks_grey/wood_planks_grey_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "eb620bf4c075153d9272de00f1bf7633",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks_grey/wood_planks_grey_rough_1k.jpg"
+      }
+    ],
+    "title": "Wood Planks Grey",
+    "id": "wood_planks_grey",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/concrete_pavement",
+    "type": "texture",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "2k",
+        "md5": "f7cdc6f38538e2739d48fbb4f1507ddb",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_pavement/concrete_pavement_diff_2k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "025a1d4e910cf3e5b3d63ada43a791d8",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "e5a0fc9831bad12c7b3779179aa706f7",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_rough_1k.jpg"
+      }
+    ],
+    "title": "Concrete Pavement",
+    "id": "concrete_pavement",
+    "authors": {
+      "Charlotte Baglioni": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/trashbag",
+    "type": "model",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "1k",
+        "md5": "255360a490bf3838f55e7f21c7ab57ab",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_diff_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "e576356779a07ac478126012544ab7b7",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "4538ecffaef10ff274c2444fb92348f8",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/trashbag/trashbag_rough_1k.jpg"
+      },
+      {
+        "md5": "af499779032990f49ccf890e97dead0d",
+        "file": "trashbag.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/trashbag/trashbag_1k.fbx"
+      }
+    ],
+    "title": "Trashbag",
+    "id": "trashbag",
+    "authors": {
+      "Benny Weimer": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/Barrel_01",
+    "type": "model",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "1k",
+        "md5": "b5f6be3994fccbbc3a4eae877fe73910",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/Barrel_01/Barrel_01_oxide_green_diff_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "f8ed41d6a8698322f4b35d42a2e29a40",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/Barrel_01/Barrel_01_oxide_green_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "2ca454d5f6e5c7cf91c2fd0dfa50afe5",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/Barrel_01/Barrel_01_oxide_green_roughness_1k.jpg"
+      },
+      {
+        "md5": "c493537e374d417e976f7509fded43da",
+        "file": "Barrel_01.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/Barrel_01/Barrel_01_1k.fbx"
+      }
+    ],
+    "title": "Barrel_01",
+    "id": "Barrel_01",
+    "authors": {
+      "Jorge Camacho": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/fire_hydrant",
+    "type": "model",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "1k",
+        "md5": "ecd42c8726c77692c8ff2d5a236896b2",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fire_hydrant/fire_hydrant_diff_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "62f1bb906fddb58f26bf8b2513b972bc",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fire_hydrant/fire_hydrant_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "0b8c2f1cbe277428eda8f0a261b6d41d",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fire_hydrant/fire_hydrant_rough_1k.jpg"
+      },
+      {
+        "md5": "95708b93c2552e0f804fc577c23a5012",
+        "file": "fire_hydrant.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/fire_hydrant/fire_hydrant_1k.fbx"
+      }
+    ],
+    "title": "Fire Hydrant",
+    "id": "fire_hydrant",
+    "authors": {
+      "Gonçalo Felício": "All"
+    },
+    "license": "CC0-1.0"
+  },
+  {
+    "source": "https://polyhaven.com/a/metal_trash_can",
+    "type": "model",
+    "licenseUrl": "https://polyhaven.com/license",
+    "files": [
+      {
+        "resolution": "1k",
+        "md5": "55d375d8d51b268b6ed8a4308155959c",
+        "file": "Diffuse.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_diff_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "fa6db04e021f6335ae2d9ad501120cae",
+        "file": "nor_gl.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_nor_gl_1k.jpg"
+      },
+      {
+        "resolution": "1k",
+        "md5": "6c7b1a9201ca71a3a519a907f6eaf30b",
+        "file": "Rough.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/metal_trash_can/metal_trash_can_rough_1k.jpg"
+      },
+      {
+        "md5": "dde180dd41cddaad272a54dcc45a0416",
+        "file": "metal_trash_can.fbx",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/fbx/1k/metal_trash_can/metal_trash_can_1k.fbx"
+      }
+    ],
+    "title": "Metal Trash Can",
+    "id": "metal_trash_can",
+    "authors": {
+      "GurJas Studios": "All"
+    },
+    "license": "CC0-1.0"
+  }
+]

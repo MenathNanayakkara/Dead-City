@@ -1,0 +1,99 @@
+﻿{
+    "SchemaVersion":  1,
+    "CheckedAt":  "2026-10-17T14:04:15.9791263+05:30",
+    "EnemyBaseGuid":  "7d9150f3f4e06d14d80d0bbd6b32e84f",
+    "Collider":  {
+                     "Type":  "CapsuleCollider",
+                     "Radius":  0.35,
+                     "Height":  1.9,
+                     "Center":  [
+                                    0,
+                                    0.95,
+                                    0
+                                ]
+                 },
+    "Characters":  [
+                       {
+                           "Character":  "Hunter",
+                           "InheritsEnemyBase":  true,
+                           "ReferencesModel":  true,
+                           "PositionOverrides":  [
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0
+                                                 ],
+                           "ScaleOverrides":  [
+
+                                              ],
+                           "PlacementAtOrigin":  true,
+                           "ScaleWithinBounds":  true
+                       },
+                       {
+                           "Character":  "Runner",
+                           "InheritsEnemyBase":  true,
+                           "ReferencesModel":  true,
+                           "PositionOverrides":  [
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0
+                                                 ],
+                           "ScaleOverrides":  [
+                                                  0.94,
+                                                  0.94
+                                              ],
+                           "PlacementAtOrigin":  true,
+                           "ScaleWithinBounds":  true
+                       },
+                       {
+                           "Character":  "Ambusher",
+                           "InheritsEnemyBase":  true,
+                           "ReferencesModel":  true,
+                           "PositionOverrides":  [
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0
+                                                 ],
+                           "ScaleOverrides":  [
+
+                                              ],
+                           "PlacementAtOrigin":  true,
+                           "ScaleWithinBounds":  true
+                       },
+                       {
+                           "Character":  "Elite",
+                           "InheritsEnemyBase":  true,
+                           "ReferencesModel":  true,
+                           "PositionOverrides":  [
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0,
+                                                     0
+                                                 ],
+                           "ScaleOverrides":  [
+                                                  1.25,
+                                                  1.25,
+                                                  1.25,
+                                                  1.17,
+                                                  1.12,
+                                                  1.17
+                                              ],
+                           "PlacementAtOrigin":  true,
+                           "ScaleWithinBounds":  true
+                       }
+                   ],
+    "Failures":  [
+
+                 ],
+    "Passed":  true
+}

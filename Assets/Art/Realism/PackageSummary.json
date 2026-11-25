@@ -1,0 +1,10 @@
+{
+  "createdUtc": "2026-10-14T12:48:17.3890148Z",
+  "files": 33,
+  "bytes": 20293260.0,
+  "payload": "payload",
+  "roster": "SHA256Roster.json",
+  "integrity": "All provider file MD5/size values matched. Full SHA256 payload roster generated.",
+  "engineValidation": "Not performed",
+  "canonicalCliVerification": "Not performed: game-dev CLI unavailable"
+}
